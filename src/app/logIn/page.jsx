@@ -15,6 +15,7 @@ import { CiLogin } from "react-icons/ci";
 import Link from "next/link";
 import FadeUp from "@/components/FadeUp";
 import toast from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
 
 const LoginPage = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,16 +26,25 @@ const LoginPage = () => {
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData.entries());
 
-    const { data, error } = await signIn.email({
+    const { data, error } = await authClient.signIn.email({
       email: userData.email,
       password: userData.password,
       remember: true,
       callbackURL: "/",
     });
 
-    if (error) toast.error(error.message);
-    if (data) toast.success("Login successful");
+    if (error) {
+      toast.error(error.message)
+    }
+    if (data) {
+      toast.success("Login successful");
+    }
   };
+  const handleGoogleLogin = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+    });
+  }
 
   return (
     <FadeUp>
@@ -151,7 +161,7 @@ const LoginPage = () => {
                 {/* LOGIN BUTTON */}
                 <Button
                   type="submit"
-                  className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-6 rounded-xl"
+                  className="w-full bg-indigo-600 rounded hover:bg-indigo-700 text-white py-6"
                 >
                   <CiLogin />
                   Login
@@ -165,8 +175,11 @@ const LoginPage = () => {
                 </div>
 
                 {/* GOOGLE */}
-                <Button className="w-full border py-5">
-                  <FcGoogle size={22} />
+                <Button
+                  onClick={handleGoogleLogin}
+                  className="w-full border p-6 rounded"
+                >
+                  <FcGoogle size={30} />
                   Continue with Google
                 </Button>
               </Form>
@@ -174,7 +187,7 @@ const LoginPage = () => {
               {/* SIGNUP */}
               <p className="text-center text-sm text-gray-500 mt-6">
                 Don’t have an account?{" "}
-                <Link href="/signUp" className="text-indigo-600 hover:underline">
+                <Link href="/signUp" className="text-indigo-600 hover:underline font-semibold">
                   Sign up
                 </Link>
               </p>

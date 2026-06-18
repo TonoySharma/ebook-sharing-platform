@@ -12,10 +12,10 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-// import { authClient, signUp } from "@/lib/auth-client";
+import { authClient, signUp } from "@/lib/auth-client";
 import { FcGoogle } from "react-icons/fc";
 import FadeUp from "@/components/FadeUp";
-
+import toast from "react-hot-toast";
 
  
 const RegisterPage = () => {
@@ -35,22 +35,22 @@ const RegisterPage = () => {
       password: userData.password, // required
 
     })
-    // console.log(data, error , "signup register")
+    console.log(data, error , "signup register")
     if (!error) {
       router.push('/')
     }
 
     if (error) {
-      alert(error.message)
+      toast.error(error.message)
     }
     if (data) {
-      alert("signup successful");
+      toast.success("Signup successful");
     }
   };
   const handleGoogleLogin = async () => {
-    // await authClient.signIn.social({
-    //   provider: "google",
-    // });
+    await authClient.signIn.social({
+      provider: "google",
+    });
   }
 
 return (
@@ -122,22 +122,6 @@ return (
                 <FieldError />
               </TextField>
 
-              {/* Image */}
-              <TextField
-                isRequired
-                name="image"
-                validate={(value) => {
-                  if (value.length < 3) {
-                    return "Please enter your photo url";
-                  }
-                  return null;
-                }}
-              >
-                <Label>Photo URL</Label>
-                <Input placeholder="Enter Photo URL" />
-                <FieldError />
-              </TextField>
-
               {/* Email */}
               <TextField
                 isRequired
@@ -200,6 +184,50 @@ return (
 
                 <FieldError />
               </TextField>
+              
+              {/* Confirm Password */}
+                <TextField
+                className="w-full"
+                name="confirmPassword"
+                isRequired
+                validate={(value) => {
+                  if (value.length < 8) {
+                    return "confirm password must be at least 8 characters";
+                  }
+                  if (!/[A-Z]/.test(value)) {
+                    return "Password must contain uppercase letter";
+                  }
+                  if (!/[0-9]/.test(value)) {
+                    return "Password must contain number";
+                  }
+                  return null;
+                }}
+              >
+                <Label>Confirm Password</Label>
+
+                <InputGroup className="border rounded-lg overflow-hidden">
+                  <InputGroup.Input
+                    type={isVisible ? "text" : "password"}
+                    placeholder="Confirm Password"
+                  />
+
+                  <InputGroup.Suffix>
+                    <Button
+                      isIconOnly
+                      variant="ghost"
+                      onPress={() => setIsVisible(!isVisible)}
+                    >
+                      {isVisible ? (
+                        <Eye className="size-4" />
+                      ) : (
+                        <EyeSlash className="size-4" />
+                      )}
+                    </Button>
+                  </InputGroup.Suffix>
+                </InputGroup>
+
+                <FieldError />
+              </TextField>       
 
               <Checkbox>
                 <Checkbox.Control>
@@ -213,7 +241,7 @@ return (
               {/* Register */}
               <Button
                 type="submit"
-                className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-6"
+                className="w-full bg-indigo-500 rounded hover:bg-indigo-700 text-white py-6"
               >
                 Register Account
               </Button>
@@ -227,9 +255,9 @@ return (
               {/* Google */}
               <Button
                 onClick={handleGoogleLogin}
-                className="w-full border"
+                className="w-full border p-6 rounded"
               >
-                <FcGoogle size={22} />
+                <FcGoogle size={30} />
                 Continue with Google
               </Button>
             </Form>
