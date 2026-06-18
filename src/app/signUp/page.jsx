@@ -1,0 +1,254 @@
+"use client";
+
+import { Checkbox, Form, InputGroup } from "@heroui/react";
+import { Check, Eye, EyeSlash } from "@gravity-ui/icons";
+import {
+  Button,
+  FieldError,
+  Input,
+  Label,
+  TextField,
+} from "@heroui/react";
+import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+// import { authClient, signUp } from "@/lib/auth-client";
+import { FcGoogle } from "react-icons/fc";
+import FadeUp from "@/components/FadeUp";
+
+
+ 
+const RegisterPage = () => {
+  const router = useRouter();
+
+  const [isVisible, setIsVisible] = useState(false);
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const userData = Object.fromEntries(formData.entries());
+    // console.log(userData);
+
+    const { data, error } = await signUp.email({
+      name: userData.name, // required
+      email: userData.email, // required
+      image: userData.image,
+      password: userData.password, // required
+
+    })
+    // console.log(data, error , "signup register")
+    if (!error) {
+      router.push('/')
+    }
+
+    if (error) {
+      alert(error.message)
+    }
+    if (data) {
+      alert("signup successful");
+    }
+  };
+  const handleGoogleLogin = async () => {
+    // await authClient.signIn.social({
+    //   provider: "google",
+    // });
+  }
+
+return (
+  <FadeUp>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-emerald-50 flex items-center justify-center px-4 py-10">
+      <div className="w-full max-w-7xl bg-white rounded-3xl shadow-2xl overflow-hidden grid lg:grid-cols-2">
+        
+        {/* Left Side */}
+        <div className="hidden lg:flex flex-col justify-center items-center bg-gradient-to-br from-indigo-600 to-purple-700 p-12 text-white relative">
+          
+          <img
+            src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=1200"
+            alt="Books"
+            className="w-[400px] rounded-2xl shadow-2xl mb-8"
+          />
+
+          <h1 className="text-5xl font-bold text-center mb-4">
+            Ebook Sharing Platform
+          </h1>
+
+          <p className="text-lg text-center text-indigo-100 max-w-md">
+            Discover, Share and Explore thousands of ebooks from readers around the world.
+          </p>
+
+          <div className="mt-10 space-y-4">
+            <div className="flex items-center gap-3">
+              <Check className="text-green-300" />
+              <span>Access Unlimited Ebooks</span>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <Check className="text-green-300" />
+              <span>Share Books With Community</span>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <Check className="text-green-300" />
+              <span>Save Your Favorite Collections</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Side */}
+        <div className="flex items-center justify-center p-8 lg:p-12">
+          <div className="w-full max-w-md">
+            <h2 className="text-4xl font-bold text-center mb-2">
+              Create Account
+            </h2>
+
+            <p className="text-center text-gray-500 mb-8">
+              Join our ebook community today
+            </p>
+
+            <Form className="flex flex-col gap-5" onSubmit={onSubmit}>
+              
+              {/* Name */}
+              <TextField
+                isRequired
+                name="name"
+                validate={(value) => {
+                  if (value.length < 3) {
+                    return "Name must be at least 3 characters";
+                  }
+                  return null;
+                }}
+              >
+                <Label>Name</Label>
+                <Input placeholder="Enter Your Name" />
+                <FieldError />
+              </TextField>
+
+              {/* Image */}
+              <TextField
+                isRequired
+                name="image"
+                validate={(value) => {
+                  if (value.length < 3) {
+                    return "Please enter your photo url";
+                  }
+                  return null;
+                }}
+              >
+                <Label>Photo URL</Label>
+                <Input placeholder="Enter Photo URL" />
+                <FieldError />
+              </TextField>
+
+              {/* Email */}
+              <TextField
+                isRequired
+                name="email"
+                type="email"
+                validate={(value) => {
+                  if (
+                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
+                  ) {
+                    return "Please enter a valid email";
+                  }
+                  return null;
+                }}
+              >
+                <Label>Email</Label>
+                <Input placeholder="Enter your email" />
+                <FieldError />
+              </TextField>
+
+              {/* Password */}
+              <TextField
+                className="w-full"
+                name="password"
+                isRequired
+                validate={(value) => {
+                  if (value.length < 8) {
+                    return "Password must be at least 8 characters";
+                  }
+                  if (!/[A-Z]/.test(value)) {
+                    return "Password must contain uppercase letter";
+                  }
+                  if (!/[0-9]/.test(value)) {
+                    return "Password must contain number";
+                  }
+                  return null;
+                }}
+              >
+                <Label>Password</Label>
+
+                <InputGroup className="border rounded-lg overflow-hidden">
+                  <InputGroup.Input
+                    type={isVisible ? "text" : "password"}
+                    placeholder="Your Password"
+                  />
+
+                  <InputGroup.Suffix>
+                    <Button
+                      isIconOnly
+                      variant="ghost"
+                      onPress={() => setIsVisible(!isVisible)}
+                    >
+                      {isVisible ? (
+                        <Eye className="size-4" />
+                      ) : (
+                        <EyeSlash className="size-4" />
+                      )}
+                    </Button>
+                  </InputGroup.Suffix>
+                </InputGroup>
+
+                <FieldError />
+              </TextField>
+
+              <Checkbox>
+                <Checkbox.Control>
+                  <Checkbox.Indicator />
+                </Checkbox.Control>
+                <Checkbox.Content>
+                  <Label>Accept Terms & Conditions</Label>
+                </Checkbox.Content>
+              </Checkbox>
+
+              {/* Register */}
+              <Button
+                type="submit"
+                className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-6"
+              >
+                Register Account
+              </Button>
+
+              <div className="flex items-center gap-4">
+                <div className="h-[1px] flex-1 bg-gray-300"></div>
+                <span className="text-gray-400 text-sm">OR</span>
+                <div className="h-[1px] flex-1 bg-gray-300"></div>
+              </div>
+
+              {/* Google */}
+              <Button
+                onClick={handleGoogleLogin}
+                className="w-full border"
+              >
+                <FcGoogle size={22} />
+                Continue with Google
+              </Button>
+            </Form>
+
+            <p className="text-center text-sm text-gray-500 mt-6">
+              Already have an account?{" "}
+              <Link
+                href="/logIn"
+                className="text-indigo-600 font-semibold hover:underline"
+              >
+                Login
+              </Link>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </FadeUp>
+);
+};
+
+export default RegisterPage;
