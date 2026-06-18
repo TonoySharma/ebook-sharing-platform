@@ -61,8 +61,8 @@ const NavBar = () => {
                   <button className="flex items-center gap-2 focus:outline-none cursor-pointer">
                     {user.image ? (
                       <Image
-                        width={20}
-                        height={20}
+                        width={25}
+                        height={25}
                         src={user.image}
                         alt={user.name}
                         className="h-10 w-10 rounded-full object-cover ring-2 ring-sky-100 transition-all group-hover:ring-sky-400"

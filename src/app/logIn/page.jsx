@@ -147,17 +147,6 @@ const LoginPage = () => {
 
                   <FieldError />
                 </TextField>
-
-                {/* CHECKBOX */}
-                <Checkbox>
-                  <Checkbox.Control>
-                    <Checkbox.Indicator />
-                  </Checkbox.Control>
-                  <Checkbox.Content>
-                    <Label>Remember me</Label>
-                  </Checkbox.Content>
-                </Checkbox>
-
                 {/* LOGIN BUTTON */}
                 <Button
                   type="submit"
