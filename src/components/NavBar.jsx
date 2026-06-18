@@ -57,7 +57,7 @@ const NavBar = () => {
                   href="/e-books"
                   className="block rounded-full px-4 py-2 text-sm text-gray-600 transition-all hover:bg-white hover:text-sky-600 hover:shadow-sm no-underline"
                 >
-                  Ebooks
+                  E-books
                 </NavLink>
               </li>
             </ul>
@@ -79,14 +79,14 @@ const NavBar = () => {
                 </>
               ) : (
                 <>
-                  <Link href="/login" className="no-underline">
+                  <Link href="/logIn" className="no-underline">
                     <Button className="cursor-pointer rounded border bg-transparent px-4 py-2
                      text-sm font-medium text-gray-600 transition-all hover:bg-sky-200">
                       Log In
                     </Button>
                   </Link>
 
-                  <Link href="/register" className="no-underline">
+                  <Link href="/signUp" className="no-underline">
                     <Button className="cursor-pointer rounded bg-sky-500 px-4 py-2 text-sm font-medium text-white shadow-sm shadow-sky-100 transition-all hover:bg-sky-600 hover:shadow-md">
                       Get Started →
                     </Button>
@@ -148,19 +148,13 @@ const NavBar = () => {
             <div className="flex flex-col gap-1.5 pt-6">
               <Link href="/browse-jobs" onClick={() => setIsMenuOpen(false)} className="no-underline">
                 <Button className="w-full cursor-pointer rounded-xl bg-transparent px-4 py-3 text-left justify-start text-sm font-medium text-gray-600 transition-all hover:bg-sky-50 hover:text-sky-600">
-                  📁 Browse Jobs
+                  Home
                 </Button>
               </Link>
 
               <Link href="/company" onClick={() => setIsMenuOpen(false)} className="no-underline">
                 <Button className="w-full cursor-pointer rounded-xl bg-transparent px-4 py-3 text-left justify-start text-sm font-medium text-gray-600 transition-all hover:bg-sky-50 hover:text-sky-600">
-                  🏢 Company
-                </Button>
-              </Link>
-
-              <Link href="/pricing" onClick={() => setIsMenuOpen(false)} className="no-underline">
-                <Button className="w-full cursor-pointer rounded-xl bg-transparent px-4 py-3 text-left justify-start text-sm font-medium text-gray-600 transition-all hover:bg-sky-50 hover:text-sky-600">
-                  💵 Pricing
+                  E-books
                 </Button>
               </Link>
             </div>
@@ -182,13 +176,13 @@ const NavBar = () => {
               </>
             ) : (
               <>
-                <Link href="/login" onClick={() => setIsMenuOpen(false)} className="w-full no-underline">
+                <Link href="/logIn" onClick={() => setIsMenuOpen(false)} className="w-full no-underline">
                   <Button className="w-full cursor-pointer rounded-xl bg-gray-50 border border-gray-200 px-4 py-3 text-center text-sm font-semibold text-gray-700 transition-all hover:bg-gray-100">
                     Log In
                   </Button>
                 </Link>
 
-                <Link href="/register" onClick={() => setIsMenuOpen(false)} className="w-full no-underline">
+                <Link href="/signUp" onClick={() => setIsMenuOpen(false)} className="w-full no-underline">
                   <Button className="w-full cursor-pointer rounded-xl bg-sky-500 px-4 py-3 text-center text-sm font-semibold text-white shadow-md shadow-sky-100 transition-all hover:bg-sky-600">
                     Get Started →
                   </Button>
