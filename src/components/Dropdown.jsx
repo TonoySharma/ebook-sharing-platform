@@ -13,7 +13,6 @@ const Dropdown = ({ role, setRole }) => {
       </option>
       <option value="reader">Reader</option>
       <option value="writer">Writer</option>
-      <option value="admin">Admin</option>
     </select>
   );
 };

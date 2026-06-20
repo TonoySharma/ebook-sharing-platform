@@ -10,6 +10,7 @@ const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { data: session } = useSession();
   const user = session?.user;
+  // console.log(user);
 
   const handleLogout = async () => {
     await signOut();
@@ -40,16 +41,32 @@ const NavBar = () => {
           </Link>
 
           {/* Right Side */}
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-5">
             {/* Desktop Nav Links */}
             <ul className="hidden border border-gray-200 px-6 py-2 rounded-full items-center gap-8 font-medium bg-gray-50/50 md:flex list-none">
               <li>
                 <NavLink
-                  href="/browse-ebook"
+                  href="/"
                   className="block rounded-full px-4 py-2 text-sm text-gray-600 transition-all hover:bg-white hover:text-sky-600 hover:shadow-sm no-underline"
                 >
-                  Browse Ebooks
+                  Home
                 </NavLink>
+              </li>
+              <li>
+                <NavLink
+                href="/browse-ebook"
+                className="block rounded-full px-4 py-2 text-sm text-gray-600 transition-all hover:bg-white hover:text-sky-600 hover:shadow-sm no-underline"
+              >
+                Browse Ebooks
+              </NavLink>
+              </li>
+              <li>
+                <NavLink
+                href='/dashboard/reader'
+                className="block rounded-full px-4 py-2 text-sm text-gray-600 transition-all hover:bg-white hover:text-sky-600 hover:shadow-sm no-underline"
+              >
+              DashBoard
+              </NavLink>
               </li>
             </ul>
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import FadeUp from './FadeUp';
 
 const Marquee = () => {
   const items = [
@@ -25,9 +26,9 @@ const Marquee = () => {
   );
 
   return (
-    <div className="w-full overflow-hidden bg-[#0a0a0a] py-8 border-y border-stone-800 flex flex-nowrap select-none">
+    <FadeUp className="w-full overflow-hidden bg-[#0a0a0a] py-8 border-y border-stone-800 flex flex-nowrap select-none">
    
-      <div className="flex whitespace-nowrap animate-marquee reduction-motion:none">
+      <FadeUp className="flex whitespace-nowrap animate-marquee reduction-motion:none">
         
        
         <div className="flex items-center shrink-0 pr-4">
@@ -53,8 +54,8 @@ const Marquee = () => {
           ))}
         </div>
 
-      </div>
-    </div>
+      </FadeUp>
+    </FadeUp>
   );
 };
 

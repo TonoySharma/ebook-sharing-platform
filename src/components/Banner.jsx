@@ -135,7 +135,7 @@ export default function HeroBanner() {
                 className="border-2 border-lime-500 rounded-xl cursor-not-allowed text-lime-600 px-10 py-4
                  font-semibold hover:bg-lime-500 hover:text-white transition-all duration-300"
               >
-                Explore Books
+               Browse Ebooks
               </motion.button>
             </div>
 
