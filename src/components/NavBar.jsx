@@ -61,12 +61,12 @@ const NavBar = () => {
               </NavLink>
               </li>
               <li>
-                <NavLink
-                href='/dashboard/reader'
-                className="block rounded-full px-4 py-2 text-sm text-gray-600 transition-all hover:bg-white hover:text-sky-600 hover:shadow-sm no-underline"
-              >
+            { session && session?.user && ( <NavLink
+                href={`/dashboard/${user?.role}`}
+                className="block rounded-full px-4 py-2 text-sm text-gray-600 transition-all hover:bg-white hover:text-sky-600 hover:shadow-sm no-underline">
               DashBoard
               </NavLink>
+            )}
               </li>
             </ul>
 
