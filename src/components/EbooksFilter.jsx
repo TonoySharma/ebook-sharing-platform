@@ -59,7 +59,7 @@ export default function EbookFilter({ ebooks, onFilterChange }) {
       
       {/* 1. Search Input Field */}
       <div style={{ flex: '1', minWidth: '250px' }}>
-        <TextField value={search} onChange={(e) => setSearch(e.target.value)}>
+        <TextField value={search} onChange={(value) => setSearch(value)}>
           <Label>Search eBooks</Label>
           <InputGroup>
             <InputGroup.Prefix>🔍</InputGroup.Prefix>

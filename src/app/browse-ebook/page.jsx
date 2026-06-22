@@ -6,7 +6,7 @@ const EbooksPage = async () => {
     const res = await fetch('http://localhost:8000/api/ebooks', { cache: 'no-store' });
     const ebooks = await res.json();
 
-    console.log(ebooks, 'EbooksPage');
+    // console.log(ebooks, 'EbooksPage');
 
     return (
         <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
