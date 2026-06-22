@@ -1,6 +1,7 @@
 import React from 'react';
 
-const LatestEbooks = () => {
+const LatestEbooks = async () => {
+   
     return (
         <div>
             <h1>latest 6 ebooks</h1>
