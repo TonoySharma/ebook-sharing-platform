@@ -13,6 +13,9 @@ export async function proxy(request) {
 
 
 // console.log(session);
+if(session?.user?.role == "reader" && session?.user?.plan === "free"){
+  return NextResponse.redirect(new URL('/', request.url))
+}
 
 if(!session || !session?.user){
    return NextResponse.redirect(new URL('/login', request.url))
@@ -24,6 +27,6 @@ if(!session || !session?.user){
 // export default function proxy(request: NextRequest) { ... }
  
 export const config = {
-  matcher: ['/my-bookings'],
+  matcher: ['/profile/dashboard/reader'],
 }
 

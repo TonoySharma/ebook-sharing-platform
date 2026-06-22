@@ -8,7 +8,8 @@ import {
     FaRegBookmark,
     FaStar,
     FaShoppingCart,
-    FaCheckCircle
+    FaCheckCircle,
+    FaCalendarAlt
 } from 'react-icons/fa';
 
 const EbooksDetailsPage = async ({ params }) => {
@@ -99,8 +100,8 @@ const EbooksDetailsPage = async ({ params }) => {
                             </h1>
 
 
-                            <Link
-                                href={`/writers/${book.writer_id}`}
+                            <div
+
                                 className="inline-flex items-center gap-2 group text-gray-600 hover:text-indigo-600 transition-colors mb-6"
                             >
                                 <div className="p-2 bg-gray-100 rounded-lg group-hover:bg-indigo-50 transition-colors">
@@ -109,7 +110,7 @@ const EbooksDetailsPage = async ({ params }) => {
                                 <span className="font-semibold text-sm md:text-base border-b border-dashed border-gray-400 group-hover:border-indigo-600">
                                     {book.writer_name}
                                 </span>
-                            </Link>
+                            </div>
 
                             <hr className="border-gray-100 my-4" />
 
@@ -126,7 +127,7 @@ const EbooksDetailsPage = async ({ params }) => {
                         <div className="bg-gray-50/70 rounded-2xl p-6 border border-gray-100 space-y-6">
                             <div className="flex flex-wrap gap-y-2 justify-between items-center text-xs md:text-sm text-gray-500">
                                 <span className="flex items-center gap-1.5">
-                                    <FaTag /> Product ID: {book._id}
+                                    <FaCalendarAlt /> Uploaded: {book.createdAt ? new Date(book.createdAt).toLocaleDateString('bn-BD') : 'N/A'}
                                 </span>
                             </div>
 
@@ -168,9 +169,10 @@ const EbooksDetailsPage = async ({ params }) => {
                                 ) : (
 
                                     <form action={`http://localhost:8000/api/checkout/stripe?bookId=${book._id}`} method="POST">
-                                        <button type="submit" className="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-lg">
+                                        <button type="submit" className="w-full flex items-center justify-center gap-2 cursor-pointer
+                                         bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-6 rounded transition-all shadow-lg">
                                             <FaShoppingCart />
-                                            Proceed to Stripe Checkout
+                                            Proceed Book
                                         </button>
                                     </form>
                                 )}

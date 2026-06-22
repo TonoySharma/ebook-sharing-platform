@@ -83,7 +83,7 @@ export default function AllEbooks({ initialEbooks }) {
 
                                     <Link
                                         href={`/ebooks/${book._id}`}
-                                        className="mt-3 flex items-center justify-center py-2 rounded-xl bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition"
+                                        className="mt-3 flex items-center justify-center py-2 rounded bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition"
                                     >
                                         View Details
                                     </Link>

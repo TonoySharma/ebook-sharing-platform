@@ -78,7 +78,7 @@ export default function EbookGenres() {
 
   return (
     <section className="py-16 bg-background border-t border-divider">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="container mx-auto px-6">
         {/* Section Header */}
         <FadeUp className="mb-12 text-center md:text-left flex flex-col md:flex-row md:items-end md:justify-between gap-4">
           <div>
@@ -88,14 +88,6 @@ export default function EbookGenres() {
             <p className="mt-3 text-base text-muted-foreground">
               Find your next favorite read by browsing through our top categories.
             </p>
-          </div>
-          <div>
-            <Link 
-              href="/browse" 
-              className="text-sm font-semibold text-primary hover:underline"
-            >
-              View All Categories &rarr;
-            </Link>
           </div>
         </FadeUp>
 
@@ -114,7 +106,7 @@ export default function EbookGenres() {
                   variant="default"
                   className="p-6 h-full flex flex-col items-start justify-between border border-divider shadow-sm group-hover:shadow-md group-hover:border-primary/40 group-hover:scale-[1.02] transition-all duration-200 rounded-2xl bg-content1"
                 >
-                  <Card.Content className="w-full flex flex-col gap-4 p-0">
+                  <Card.Content className="w-full flex flex-col gap-4 p-0 items-center">
                     {/* Icon Wrapper with Dynamic Colors */}
                     <div className={`p-3 rounded-xl w-fit flex items-center justify-center ${genre.bgClass}`}>
                       <IconComponent size={24} />
