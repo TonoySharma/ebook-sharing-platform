@@ -15,7 +15,7 @@ const ReaderDashBordPage = () => {
     
     return (
         <div>
-            <h1 className='text-3xl font-semibold'>Welcome back , <span className='text-pink-600'>{user?.name}</span></h1>
+            <h1 className='text-3xl font-semibold'>Welcome back , <span className='text-pink-600 hover:underline'>{user?.name}</span></h1>
             <StatsDashboard></StatsDashboard>
         </div>
     );

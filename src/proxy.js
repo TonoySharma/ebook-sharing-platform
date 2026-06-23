@@ -27,6 +27,6 @@ if(!session || !session?.user){
 // export default function proxy(request: NextRequest) { ... }
  
 export const config = {
-  matcher: ['/profile/dashboard/reader'],
+  matcher: ['/profile,'],
 }
 

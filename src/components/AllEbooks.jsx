@@ -1,13 +1,28 @@
-// components/EbooksList.jsx
-"use client"; 
+"use client";
 
 import React, { useState } from 'react';
 import Link from 'next/link';
 import EbookFilter from '@/components/EbooksFilter';
+import FadeUp from './FadeUp';
+import { Pagination, Table } from '@heroui/react';
 
 export default function AllEbooks({ initialEbooks }) {
-  
+    // console.log(initialEbooks)
+    const initialEbooksData = initialEbooks.data;
+
+    console.log(initialEbooks);
+    const page = initialEbooks.page;
+    const pages = []
+    const totalPages = initialEbooks.totalPage;
+    for (let i = 1; i <= totalPages; i++) {
+        pages.push(i)
+    }
+    console.log(pages);
+
     const [displayedEbooks, setDisplayedEbooks] = useState(initialEbooks);
+
+
+
 
     return (
         <>
@@ -15,8 +30,8 @@ export default function AllEbooks({ initialEbooks }) {
             <EbookFilter ebooks={initialEbooks} onFilterChange={setDisplayedEbooks} />
 
             <div className="max-w-7xl mx-auto mt-10">
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-                    {displayedEbooks.map((book) => (
+                <FadeUp className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                    {initialEbooksData.map((book) => (
                         <div
                             key={book._id}
                             className="group relative flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100"
@@ -31,8 +46,8 @@ export default function AllEbooks({ initialEbooks }) {
                                 />
 
                                 {book.is_sold && (
-                                    <span className="absolute top-3 right-3 bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-full">
-                                        Sold 🏷️
+                                    <span className="absolute top-3 right-3 bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded-full">
+                                        Sold Out
                                     </span>
                                 )}
 
@@ -91,12 +106,53 @@ export default function AllEbooks({ initialEbooks }) {
                             </div>
                         </div>
                     ))}
-                </div>
 
-                {displayedEbooks.length === 0 && (
-                    <div className="text-center py-20 bg-white rounded-2xl shadow-sm border border-dashed border-gray-200 mt-6">
+                </FadeUp>
+                {/* Pagination */}
+                <FadeUp className='items-center justify-center flex my-8'>
+                    <Table.Footer>
+                        <Pagination size="sm">
+                            <Pagination.Content>
+                                <Pagination.Item>
+                                    <Pagination.Previous
+                                        isDisabled={page === 1}
+
+                                    >
+                                        <Link className='flex items-center gap-1' href={`/browse-ebook?page=${page - 1}`}>
+                                            <Pagination.PreviousIcon />
+                                            Prev
+                                        </Link>
+                                    </Pagination.Previous>
+                                </Pagination.Item>
+                                {pages.map((p) => (
+                                    <Pagination.Item key={p} >
+                                        <Link href={`/browse-ebook?page=${p}`} >
+                                            <Pagination.Link isActive={p === page} className={`${p===page && 'bg-blue-500 text-white'}`}>
+                                                {p}
+                                            </Pagination.Link>
+                                        </Link>
+                                    </Pagination.Item>
+                                ))}
+                                <Pagination.Item>
+                                    <Pagination.Next
+                                        isDisabled={page === totalPages}>
+                                        <Link className='flex items-center gap-1' href={`/browse-ebook?page=${page + 1}`}>
+                                           
+                                         
+                                            Next
+                                            <Pagination.NextIcon />
+                                        </Link>
+                                    </Pagination.Next>
+                                </Pagination.Item>
+                            </Pagination.Content>
+                        </Pagination>
+                    </Table.Footer>
+                </FadeUp>
+
+                {initialEbooksData.length === 0 && (
+                    <FadeUp className="text-center py-20 bg-white rounded-2xl shadow-sm border border-dashed border-gray-200 mt-6">
                         <p className="text-gray-500 font-medium">Not Found!</p>
-                    </div>
+                    </FadeUp>
                 )}
             </div>
         </>

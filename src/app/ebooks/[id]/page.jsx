@@ -11,6 +11,7 @@ import {
     FaCheckCircle,
     FaCalendarAlt
 } from 'react-icons/fa';
+import { Button } from '@heroui/react';
 
 const EbooksDetailsPage = async ({ params }) => {
     const { id } = await params;
@@ -168,12 +169,13 @@ const EbooksDetailsPage = async ({ params }) => {
                                     </Link>
                                 ) : (
 
-                                    <form action={`http://localhost:8000/api/checkout/stripe?bookId=${book._id}`} method="POST">
-                                        <button type="submit" className="w-full flex items-center justify-center gap-2 cursor-pointer
+                                    <form action={'/api/subcription'} method="POST">
+                                        <Button type="submit" 
+                                        className="w-full flex items-center justify-center gap-2 cursor-pointer
                                          bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-6 rounded transition-all shadow-lg">
                                             <FaShoppingCart />
-                                            Proceed Book
-                                        </button>
+                                             Book Now
+                                        </Button>
                                     </form>
                                 )}
                             </div>

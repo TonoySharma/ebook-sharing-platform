@@ -9,6 +9,9 @@ import { BsBookmarkStarFill } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { House } from "@gravity-ui/icons";
 import { useSession } from "@/lib/auth-client";
+import { BiSolidBookAdd } from "react-icons/bi";
+import { MdManageAccounts, MdManageSearch, MdOutlineGridView, MdOutlineManageHistory } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
 
 export function DashboardSidebar() {
   const { data: session } = useSession();
@@ -23,17 +26,17 @@ export function DashboardSidebar() {
   ];
   const writerNavItems = [
     { icon: House, href: "/dashboard/writer", label: "dashboard" },
-    { icon: LuHistory, href: "/dashboard/purschese", label: "Manage Ebooks" },
-    { icon: LuNotebookPen, href: "/dashboard/purchasedbooks", label: "Add Ebook" },
-    { icon: CgProfile, href: "/dashboard/profile", label: " Edit Ebook" },
+    { icon: MdManageSearch, href: "/dashboard/purschese", label: "Manage Ebooks" },
+    { icon: BiSolidBookAdd , href: "/dashboard/purchasedbooks", label: "Add Ebook" },
+    { icon: FaEdit, href: "/dashboard/profile", label: " Edit Ebook" },
     { icon: BsBookmarkStarFill, href: "/dashboard/bookmark", label: "Bookmark" },
-    { icon: BsBookmarkStarFill, href: "/dashboard/bookmark", label: "Sales History" },
+    { icon: LuHistory, href: "/dashboard/bookmark", label: "Sales History" },
   ];
   const adminNavItems = [
     { icon: House, href: "/dashboard/admin", label: "dashboard" },
-    { icon: LuHistory, href: "/dashboard/purschese", label: "Manage Users" },
-    { icon: LuNotebookPen, href: "/dashboard/purchasedbooks", label: "Manage All Ebooks" },
-    { icon: CgProfile, href: "/dashboard/profile", label: " View All Transactions" },
+    { icon: MdManageAccounts, href: "/dashboard/purschese", label: "Manage Users" },
+    { icon: MdOutlineManageHistory, href: "/dashboard/purchasedbooks", label: "Manage All Ebooks" },
+    { icon: MdOutlineGridView, href: "/dashboard/profile", label: " View All Transactions" },
 
   ];
 

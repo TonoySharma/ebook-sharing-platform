@@ -1,5 +1,4 @@
 import { fetchFeaturedEbook } from '@/lib/ebook/data';
-import { Button } from '@heroui/react';
 import Link from 'next/link';
 import React from 'react';
 import FadeUp from './FadeUp';
@@ -15,7 +14,7 @@ const FeaturedEbooks = async ({ ebooks = [] }) => {
 
     const ebook = await fetchFeaturedEbook();
 
-    console.log(ebook);
+    // console.log(ebook);
 
 
     return (

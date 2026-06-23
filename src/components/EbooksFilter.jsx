@@ -12,6 +12,7 @@ import {
   InputGroup, 
   TextField 
 } from "@heroui/react";
+import FadeUp from './FadeUp';
 
 // Sample genres and price ranges for the dropdowns
 const GENRES = ["All", "Fantasy", "Mystery", "Sci-Fi", "Drama", "Thriller"];
@@ -23,6 +24,8 @@ const PRICE_RANGES = [
 ];
 
 export default function EbookFilter({ ebooks, onFilterChange }) {
+
+  
   const [search, setSearch] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("All");
   const [selectedPriceRange, setSelectedPriceRange] = useState("all");
@@ -55,6 +58,7 @@ export default function EbookFilter({ ebooks, onFilterChange }) {
   }, [filteredEbooks, onFilterChange]);
 
   return (
+    <FadeUp>
     <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'flex-end', padding: '16px', background: '#f9f9f9', borderRadius: '8px' }}>
       
       {/* 1. Search Input Field */}
@@ -117,5 +121,6 @@ export default function EbookFilter({ ebooks, onFilterChange }) {
       </div>
 
     </div>
+    </FadeUp>
   );
 }

@@ -1,10 +1,16 @@
 import AllEbooks from '@/components/AllEbooks';
+import { getEbooks } from '@/lib/api/ebooks';
 import React from 'react';
 
 
-const EbooksPage = async () => {
+const EbooksPage = async ({searchParams}) => {
     const res = await fetch('http://localhost:8000/api/ebooks', { cache: 'no-store' });
     const ebooks = await res.json();
+    
+      const params = await searchParams;
+    //   console.log(params);
+      const initialEbooks = await getEbooks(params.page)
+    // console.log(initialEbooks)
 
     // console.log(ebooks, 'EbooksPage');
 
@@ -22,7 +28,7 @@ const EbooksPage = async () => {
                 </div>
 
          
-                <AllEbooks initialEbooks={ebooks} />
+                <AllEbooks initialEbooks={initialEbooks || []} />
             </div>
         </div>
     );

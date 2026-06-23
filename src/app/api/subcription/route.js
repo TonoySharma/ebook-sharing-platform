@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import { headers } from 'next/headers'
 import { stripe } from '@/lib/stripe';
+import { auth } from '@/lib/auth';
+
 
 
 
@@ -9,10 +11,19 @@ export async function POST() {
     const headersList = await headers()
     const origin = headersList.get('origin')
 
-    const PRICE_ID = "prod_UkepB8eP3N2O2K"
+    const userSession = await auth.api.getSession({
+        headers: await headers()
+    })
+    const user = userSession?.user
+
+
+
+
+    const PRICE_ID = "price_1Tl9VcR6vcdNysqfSlkusptJ"
 
     // Create Checkout Sessions from body params.
     const session = await stripe.checkout.sessions.create({
+        customer_email:user?.email,
       line_items: [
         {
           // Provide the exact Price ID (for example, price_1234) of the product you want to sell
@@ -20,7 +31,13 @@ export async function POST() {
           quantity: 1,
         },
       ],
-      mode: 'subcription',
+      metadata:{
+        priceId: PRICE_ID,
+        userId: user.id,
+        userEmail: user.email,
+
+      },
+      mode: 'subscription',
       success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
     });
     return NextResponse.redirect(session.url, 303)
@@ -40,6 +57,6 @@ export async function POST() {
 
 export async function GET(){
     return NextResponse.json({
-        massage: "hello from subcription api route"
+        massage: "hello from subscription api route"
     })
 }
