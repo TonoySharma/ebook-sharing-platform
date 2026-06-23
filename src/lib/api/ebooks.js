@@ -17,3 +17,12 @@ export const getEbooks = async (page) => {
   const data = await res.json();
   return data;
 }
+
+export const getAllEbooks = async (search) => {
+  const res = await fetch(`${baseURl}/api/ebooks?search=${search}`)
+
+
+  const data = await res.json();
+
+  return data;
+}

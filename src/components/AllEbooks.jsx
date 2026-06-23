@@ -6,28 +6,31 @@ import EbookFilter from '@/components/EbooksFilter';
 import FadeUp from './FadeUp';
 import { Pagination, Table } from '@heroui/react';
 
-export default function AllEbooks({ initialEbooks }) {
+export default function AllEbooks({ initialEbooks, }) {
     // console.log(initialEbooks)
+    
+    // console.log(books, 'books')
+    
     const initialEbooksData = initialEbooks.data;
 
-    console.log(initialEbooks);
+    // console.log(initialEbooks);
     const page = initialEbooks.page;
     const pages = []
     const totalPages = initialEbooks.totalPage;
     for (let i = 1; i <= totalPages; i++) {
         pages.push(i)
     }
-    console.log(pages);
+    // console.log(pages);
 
-    const [displayedEbooks, setDisplayedEbooks] = useState(initialEbooks);
-
+    // const [displayedEbooks, setDisplayedEbooks] = useState(initialEbooks);
+//  ebooks={initialEbooks} onFilterChange={setDisplayedEbooks}
 
 
 
     return (
         <>
             {/* search and filter */}
-            <EbookFilter ebooks={initialEbooks} onFilterChange={setDisplayedEbooks} />
+            <EbookFilter />
 
             <div className="max-w-7xl mx-auto mt-10">
                 <FadeUp className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">

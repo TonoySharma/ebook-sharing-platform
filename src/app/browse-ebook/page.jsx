@@ -1,18 +1,25 @@
 import AllEbooks from '@/components/AllEbooks';
-import { getEbooks } from '@/lib/api/ebooks';
+import { getAllEbooks, getEbooks } from '@/lib/api/ebooks';
 import React from 'react';
 
+const EbooksPage = async ({ searchParams }) => {
+  
+    const params = await searchParams;
+    const searchQuery = params?.search || '';
+    const pageQuery = params?.page || 1;
 
-const EbooksPage = async ({searchParams}) => {
-    const res = await fetch('http://localhost:8000/api/ebooks', { cache: 'no-store' });
-    const ebooks = await res.json();
-    
-      const params = await searchParams;
-    //   console.log(params);
-      const initialEbooks = await getEbooks(params.page)
-    // console.log(initialEbooks)
+    let displayEbooks = [];
 
-    // console.log(ebooks, 'EbooksPage');
+  
+    if (searchQuery) {
+        displayEbooks = await getAllEbooks(searchQuery);
+    } else {
+        displayEbooks = await getEbooks(pageQuery);
+    }
+
+    // (Optional) Localhost theke fetch kora data jodi lagbe bole mone hoy, tahole thakbe, natha bad dite paren
+    // const res = await fetch('http://localhost:8000/api/ebooks', { cache: 'no-store' });
+    // const ebooks = await res.json();
 
     return (
         <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -27,8 +34,8 @@ const EbooksPage = async ({searchParams}) => {
                     </p>
                 </div>
 
-         
-                <AllEbooks initialEbooks={initialEbooks || []} />
+                {/* 3. Ekhane dynamic content-ti pass kore din */}
+                <AllEbooks initialEbooks={displayEbooks || []} />
             </div>
         </div>
     );
