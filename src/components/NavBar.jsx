@@ -188,11 +188,24 @@ const NavBar = () => {
 
             {/* Mobile Nav Links */}
             <div className="flex flex-col gap-1.5 pt-6">
+              <Link href="/" onClick={() => setIsMenuOpen(false)} className="no-underline">
+                <Button className="w-full cursor-pointer rounded-xl bg-transparent px-4 py-3 text-left justify-start text-sm font-medium text-gray-600 transition-all hover:bg-sky-50 hover:text-sky-600">
+                  Home
+                </Button>
+              </Link>
               <Link href="/browse-ebook" onClick={() => setIsMenuOpen(false)} className="no-underline">
                 <Button className="w-full cursor-pointer rounded-xl bg-transparent px-4 py-3 text-left justify-start text-sm font-medium text-gray-600 transition-all hover:bg-sky-50 hover:text-sky-600">
                   Browse Ebooks
                 </Button>
               </Link>
+              <li>
+            { session && session?.user && ( <NavLink
+                href={`/dashboard/${user?.role}`}
+                className="block rounded-full px-4 py-2 text-sm text-gray-600 transition-all hover:bg-white hover:text-sky-600 hover:shadow-sm no-underline">
+              DashBoard
+              </NavLink>
+            )}
+              </li>
             </div>
           </div>
 

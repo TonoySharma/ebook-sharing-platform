@@ -33,7 +33,7 @@ export default function AllEbooks({ initialEbooks, }) {
             <EbookFilter />
 
             <div className="max-w-7xl mx-auto mt-10">
-                <FadeUp className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                <FadeUp className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                     {initialEbooksData.map((book) => (
                         <div
                             key={book._id}
