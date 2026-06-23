@@ -8,5 +8,13 @@ export const getUserSession = async () => {
         headers: await headers()
     })
 
-    return session?.user || null
+    return session?.user || null;
+}
+
+export const getUserToken = async () => {
+   const session = await auth.api.getSession({
+        headers: await headers()
+    })
+
+    return session?.session?.token || null;
 }

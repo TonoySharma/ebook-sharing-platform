@@ -26,3 +26,4 @@ export const getAllEbooks = async (search) => {
 
   return data;
 }
+
