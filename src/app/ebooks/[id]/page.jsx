@@ -1,3 +1,4 @@
+
 import { getEbooksById } from '@/lib/api/ebooks';
 import React from 'react';
 import Link from 'next/link';
@@ -12,8 +13,13 @@ import {
     FaCalendarAlt
 } from 'react-icons/fa';
 import { Button } from '@heroui/react';
+import { authClient } from '@/lib/auth-client';
+import PurchaseButton from '@/components/PurcheseButton';
 
 const EbooksDetailsPage = async ({ params }) => {
+
+
+
     const { id } = await params;
     const book = await getEbooksById(id);
 
@@ -170,12 +176,7 @@ const EbooksDetailsPage = async ({ params }) => {
                                 ) : (
 
                                     <form action={'/api/subcription'} method="POST">
-                                        <Button type="submit" 
-                                        className="w-full flex items-center justify-center gap-2 cursor-pointer
-                                         bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-6 rounded transition-all shadow-lg">
-                                            <FaShoppingCart />
-                                             Book Now
-                                        </Button>
+                                       <PurchaseButton></PurchaseButton>
                                     </form>
                                 )}
                             </div>

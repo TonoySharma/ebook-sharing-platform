@@ -2,7 +2,7 @@ import React from 'react';
 import { FiDownload, FiBookOpen, FiUser, FiDollarSign, FiCalendar, FiCheckCircle, FiClock, FiAlertCircle } from 'react-icons/fi';
 
 export default function PurchaseHistory() {
-  // ডামি ডেটা
+
   const purchases = [
     {
       id: 1,
@@ -38,7 +38,7 @@ export default function PurchaseHistory() {
     },
   ];
 
-  // Status Badge এর জন্য ডাইনামিক স্টাইল ফাংশন
+
   const getStatusStyle = (status) => {
     switch (status) {
       case 'Completed':
@@ -52,7 +52,7 @@ export default function PurchaseHistory() {
     }
   };
 
-  // Status এর জন্য ডাইনামিক আইকন ফাংশন
+
   const getStatusIcon = (status) => {
     switch (status) {
       case 'Completed': return <FiCheckCircle className="w-4 h-4" />;

@@ -20,13 +20,13 @@ export function DashboardSidebar() {
   const navItems = [
     { icon: House, href: "/dashboard/reader", label: "dashboard" },
     { icon: LuHistory, href: "/dashboard/purschese", label: "Purchase History" },
-    { icon: LuNotebookPen, href: "/dashboard/purchasedbooks", label: "Purchased Ebooks" },
+    { icon: LuNotebookPen, href: "/dashboard/purchaseEbook", label: "Purchased Ebooks" },
     { icon: CgProfile, href: "/dashboard/profile", label: " Profile" },
     { icon: BsBookmarkStarFill, href: "/dashboard/bookmark", label: "Bookmark" },
   ];
   const writerNavItems = [
     { icon: House, href: "/dashboard/writer", label: "dashboard" },
-    { icon: MdManageSearch, href: "/dashboard/purschese", label: "Manage Ebooks" },
+    { icon: MdManageSearch, href: "/dashboard/manageEbooks", label: "Manage Ebooks" },
     { icon: BiSolidBookAdd , href: "/dashboard/purchasedbooks", label: "Add Ebook" },
     { icon: FaEdit, href: "/dashboard/profile", label: " Edit Ebook" },
     { icon: BsBookmarkStarFill, href: "/dashboard/bookmark", label: "Bookmark" },
