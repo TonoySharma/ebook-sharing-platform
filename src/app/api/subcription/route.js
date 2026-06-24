@@ -6,7 +6,11 @@ import { auth } from '@/lib/auth';
 
 
 
-export async function POST() {
+export async function POST(req) {
+  const data = await req.json();
+
+  // console.log(data);
+  
   try {
     const headersList = await headers()
     const origin = headersList.get('origin')
@@ -15,8 +19,6 @@ export async function POST() {
         headers: await headers()
     })
     const user = userSession?.user
-
-
 
 
     const PRICE_ID = "price_1Tl9VcR6vcdNysqfSlkusptJ"
@@ -35,12 +37,15 @@ export async function POST() {
         priceId: PRICE_ID,
         userId: user.id,
         userEmail: user.email,
+        
 
       },
       mode: 'subscription',
       success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
     });
-    return NextResponse.redirect(session.url, 303)
+    // console.log(session);
+    
+    return NextResponse.json({url:session.url,})
   } catch (err) {
     return NextResponse.json(
       { error: err.message },
@@ -48,9 +53,6 @@ export async function POST() {
     )
   }
 }
-
-
-
 
 
 

@@ -12,13 +12,10 @@ import {
     FaCheckCircle,
     FaCalendarAlt
 } from 'react-icons/fa';
-import { Button } from '@heroui/react';
-import { authClient } from '@/lib/auth-client';
 import PurchaseButton from '@/components/PurcheseButton';
 
+
 const EbooksDetailsPage = async ({ params }) => {
-
-
 
     const { id } = await params;
     const book = await getEbooksById(id);
@@ -175,8 +172,9 @@ const EbooksDetailsPage = async ({ params }) => {
                                     </Link>
                                 ) : (
 
-                                    <form action={'/api/subcription'} method="POST">
-                                       <PurchaseButton></PurchaseButton>
+                                    <form >
+                                  
+                                        <PurchaseButton book={book}></PurchaseButton>
                                     </form>
                                 )}
                             </div>

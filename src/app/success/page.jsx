@@ -1,3 +1,4 @@
+
 import SuccessPaymentPage from '@/components/PaymentSucces'
 import { subscription } from '@/lib/action/payment'
 import { stripe } from '@/lib/stripe'
@@ -7,7 +8,9 @@ import { redirect } from 'next/navigation'
 
 export default async function Success({ searchParams }) {
   const { session_id } = await searchParams
-
+  //  const { data: session } = authClient.useSession();
+  //   const user = session?.user;
+   
   if (!session_id)
     throw new Error('Please provide a valid session_id (`cs_test_...`)')
 
@@ -38,3 +41,5 @@ await subscription ({...metadata, sessionId: session_id})
     )
   }
 }
+
+

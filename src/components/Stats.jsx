@@ -1,4 +1,5 @@
 import React from 'react';
+import FadeUp from './FadeUp';
 
 export default function StatsDashboard() {
     // Dynamic value add korar jonno cards list-e "value" property track kora holo
@@ -17,7 +18,7 @@ export default function StatsDashboard() {
 
     return (
         <div className="min-h-screen p-4 sm:p-6 text-black font-sans antialiased">
-            <div className="max-w-6xl mx-auto space-y-8">
+            <FadeUp className="max-w-6xl mx-auto space-y-8">
 
                 {/* --- Stats Section --- */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -76,7 +77,7 @@ export default function StatsDashboard() {
                     </div>
                 </div>
 
-            </div>
+            </FadeUp>
         </div>
     );
 }

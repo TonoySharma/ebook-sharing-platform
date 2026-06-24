@@ -1,3 +1,4 @@
+import FadeUp from '@/components/FadeUp';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import React from 'react';
@@ -7,12 +8,12 @@ const ProfilePage = async () => {
         headers: await headers()
     });
 
-    console.log(session);
+    // console.log(session);
 
     const user = session?.user;
-    console.log(user, 'user');
+    // console.log(user, 'user');
 
-    // তারিখ এবং সময় ফরম্যাট
+   
     const currentDate = new Date().toLocaleDateString('en-US', {
         weekday: 'short',
         month: 'short',
@@ -27,7 +28,7 @@ const ProfilePage = async () => {
 
     return (
         <div className="min-h-screen bg-[#fafafa] py-16 px-4 sm:px-6 lg:px-8 font-sans text-neutral-900">
-            <div className="max-w-3xl mx-auto">
+            <FadeUp className="max-w-3xl mx-auto">
                 
           
                 <div className="relative overflow-hidden rounded-[32px] border border-neutral-200/60 bg-white p-6 shadow-sm sm:p-10">
@@ -52,14 +53,14 @@ const ProfilePage = async () => {
                         <div className="space-y-1.5 flex-1">
                             <div className="flex flex-col items-center gap-2 sm:flex-row">
                                 <h1 className="text-2xl font-semibold tracking-tight text-neutral-900">
-                                    {user?.name || 'Alex Morgan'}
+                                    {user?.name || 'NO login'}
                                 </h1>
                                 <span className="rounded-full bg-neutral-900 px-2.5 py-0.5 text-[11px] font-medium text-white tracking-wide">
                                     PRO MEMBER
                                 </span>
                             </div>
                             <p className="text-sm text-neutral-500 font-medium">
-                                {user?.email || 'alex.morgan@design.com'}
+                                {user?.email || 'NO login'}
                             </p>
                         </div>
                     </div>
@@ -111,7 +112,7 @@ const ProfilePage = async () => {
                     </div>
 
                 </div>
-            </div>
+            </FadeUp>
         </div>
     );
 };
