@@ -107,9 +107,12 @@ const FeaturedEbooks = async ({ ebooks = [] }) => {
 
                                     <Link
                                         href={`/ebooks/${book._id}`}
-                                        className="mt-3 flex items-center justify-center py-2 rounded bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition"
-                                    >
-                                        View Details
+                                        className="inline-flex w-full items-center justify-center
+                                         rounded bg-gray-900 px-4 py-2.5 text-sm font-medium
+                                          text-white transition-colors hover:bg-gray-800
+                                         focus:outline-none focus:ring-2 cursor-pointer
+                                          focus:ring-gray-950 focus:ring-offset-2">
+                                        Read Details
                                     </Link>
                                 </div>
                             </div>

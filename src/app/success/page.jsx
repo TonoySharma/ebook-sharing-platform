@@ -24,7 +24,7 @@ export default async function Success({ searchParams }) {
   }
 
   if (status === 'complete') {
-console.log(metadata);
+// console.log(metadata);
 
 await subscription ({...metadata, sessionId: session_id})
 

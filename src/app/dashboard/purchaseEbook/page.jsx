@@ -1,134 +1,112 @@
-"use client"
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
+import React from 'react';
+import Link from 'next/link';
 
+const PurcheseEbookPage = async () => {
+    const session = await auth.api.getSession({
+        headers: await headers()
+    });
 
-import Link from 'next/link'; 
-import { Button } from "@heroui/react";
-import FadeUp from '@/components/FadeUp';
-import { authClient } from '@/lib/auth-client';
+    // console.log(session);
 
+    const user = session?.user;
+    // console.log(user,   'user');
+    
 
-const PURCHASED_EBOOKS = [
-  {
-    id: 1,
-    title: "The Midnight Library",
-    writer_name: "Matt Haig",
-    cover_image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=500&auto=format&fit=crop&q=60",
-    details_link: "/ebooks/1"
-  },
-  {
-    id: 2,
-    title: "Project Hail Mary",
-    writer_name: "Andy Weir",
-    cover_image: "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=500&auto=format&fit=crop&q=60",
-    details_link: "/ebooks/2"
-  },
-  {
-    id: 3,
-    title: "Sapiens: A Brief History of Humankind",
-    writer_name: "Yuval Noah Harari",
-    cover_image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=500&auto=format&fit=crop&q=60",
-    details_link: "/ebooks/3"
-  }
-];
+    const res = await fetch(`http://localhost:8000/PurchasedNow/${user?.id}`, {
+        cache: 'no-store' 
+    });
 
-export default function PurchasedEbooks({ ebooks = PURCHASED_EBOOKS }) {
+    const data = await res.json();
+    // console.log(data,   'data');
 
+  
+    const totalBooks = data?.length || 0;
 
-  return (
-    <FadeUp>
-      <div style={{ padding: '24px', maxWidth: '1200px', margin: '0 auto' }}>
+    return (
+        <div className="max-w-7xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
         
-      
-        <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px', color: '#1a1a1a' }}>
-          My Purchased eBooks ({ebooks.length})
-        </h2>
-
-   
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
-          gap: '24px'
-        }}>
-          
-          {ebooks.map((book) => (
-            <div 
-              key={book.id} 
-              className="ebook-card" 
-              style={{
-                background: '#ffffff',
-                borderRadius: '12px',
-                overflow: 'hidden',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
-                border: '1px solid #eef0f2',
-                display: 'flex',
-                flexDirection: 'column',
-                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-              }}
-            >
-        
-              <div style={{ position: 'relative', width: '100%', height: '280px', background: '#f5f5f5', overflow: 'hidden' }}>
-                <img 
-                  src={book.cover_image} 
-                  alt={book.title} 
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }}
-                />
-              </div>
-
-        
-              <div style={{ padding: '16px', flex: '1', display: 'flex', flexDirection: 'column', justifyContent: 'between' }}>
-                <div style={{ marginBottom: '12px' }}>
-                  <h3 style={{ 
-                    fontSize: '16px', 
-                    fontWeight: '600', 
-                    color: '#1a1a1a',
-                    margin: '0 0 4px 0',
-                    lineHeight: '1.4',
-                    display: '-webkit-box',
-                    WebkitLineClamp: '2',
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden'
-                  }}>
-                    {book.title}
-                  </h3>
-                  <p style={{ fontSize: '13px', color: '#666', margin: 0 }}>{book.writer_name}</p>
+            <div className="mb-8 border-b border-gray-200 pb-5 sm:flex sm:items-center sm:justify-between">
+                <div>
+                    <h1 className="text-3xl font-bold tracking-tight text-gray-950">
+                        My Purchased Ebooks
+                    </h1>
+                    <p className="mt-2 text-sm text-gray-500">
+                        Here are all the premium ebooks you have unlocked.
+                    </p>
                 </div>
-
-             
-                <div style={{ marginTop: 'auto' }}>
-                  <Link href={book.details_link} passHref style={{ textDecoration: 'none' }}>
-                    <Button 
-                      variant="flat" 
-                      color="primary" 
-                      fullWidth
-                      style={{ 
-                        fontWeight: '500',
-                        borderRadius: '8px',
-                        fontSize: '14px'
-                      }}
-                    >
-                      Read / View Details
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-
+                
+                {totalBooks > 0 && (
+                    <div className="mt-4 sm:mt-0">
+                        <span className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+                            Total: {totalBooks} {totalBooks === 1 ? 'Book' : 'Books'}
+                        </span>
+                    </div>
+                )}
             </div>
-          ))}
 
+        
+            {totalBooks === 0 ? (
+                <div className="text-center py-20 border-2 border-dashed border-gray-200 rounded-2xl bg-gray-50">
+                    <div className="text-gray-400 mb-3 text-4xl">📚</div>
+                    <h3 className="text-lg font-semibold text-gray-900">No Books Found</h3>
+                    <p className="text-gray-500 mt-1 text-sm">You haven&apos;t purchased any ebooks yet.</p>
+                    <div className="mt-6">
+                        <Link 
+                            href="/shop" 
+                            className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-500"
+                        >
+                            Browse Ebooks
+                        </Link>
+                    </div>
+                </div>
+            ) : (
+             
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                    {data.map((ebook) => (
+                        <div 
+                            key={ebook.id} 
+                            className="group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                        >
+                           
+                           <div className="relative h-52 w-full overflow-hidden bg-gray-100">
+                                <img
+                                    src={ebook.coverImage || 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&q=80&w=400'} 
+                                    alt={ebook.title}
+                                    className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                            </div>
+
+                      
+                            <div className="flex flex-1 flex-col p-5">
+                                <h3 className="text-lg font-semibold text-gray-900 line-clamp-1 group-hover:text-blue-600 transition-colors">
+                                    {ebook.title}
+                                </h3>
+                                <p className="mt-1 text-sm text-gray-500 line-clamp-2 flex-1">
+                                    {ebook.description || 'Click details to start reading this amazing book.'}
+                                </p>
+                                
+                            
+                                <div className="mt-5">
+                                    <Link 
+                                       href={`/ebooks/${ebook._id}`}
+                                        className="inline-flex w-full items-center justify-center
+                                         rounded bg-gray-900 px-4 py-2.5 text-sm font-medium
+                                          text-white transition-colors hover:bg-gray-800
+                                           focus:outline-none focus:ring-2 cursor-pointer
+                                            focus:ring-gray-950 focus:ring-offset-2">
+                                        Read Details
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
-      </div>
+    );
+};
 
- 
-      <style jsx global>{`
-        .ebook-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1) !important;
-        }
-      `}</style>
-    </FadeUp>
-  );
-}
+export default PurcheseEbookPage;

@@ -20,9 +20,9 @@ export default function PurchaseButton() {
         // } = books
 
         const purchasedData = {
-            userId: user.id,
-            userName: user.name,
-            userEmail: user.email,
+            userId: user?.id,
+            userName: user?.name,
+            userEmail: user?.email,
             // price,
             // _id,
             // writer_name,

@@ -8,9 +8,9 @@ import { Pagination, Table } from '@heroui/react';
 
 export default function AllEbooks({ initialEbooks, }) {
     // console.log(initialEbooks)
-    
+
     // console.log(books, 'books')
-    
+
     const initialEbooksData = initialEbooks.data;
 
     // console.log(initialEbooks);
@@ -23,7 +23,7 @@ export default function AllEbooks({ initialEbooks, }) {
     // console.log(pages);
 
     // const [displayedEbooks, setDisplayedEbooks] = useState(initialEbooks);
-//  ebooks={initialEbooks} onFilterChange={setDisplayedEbooks}
+    //  ebooks={initialEbooks} onFilterChange={setDisplayedEbooks}
 
 
 
@@ -101,9 +101,12 @@ export default function AllEbooks({ initialEbooks, }) {
 
                                     <Link
                                         href={`/ebooks/${book._id}`}
-                                        className="mt-3 flex items-center justify-center py-2 rounded bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition"
-                                    >
-                                        View Details
+                                        className="inline-flex w-full items-center justify-center
+                                         rounded bg-gray-900 px-4 py-2.5 text-sm font-medium
+                                          text-white transition-colors hover:bg-gray-800
+                                         focus:outline-none focus:ring-2 cursor-pointer
+                                          focus:ring-gray-950 focus:ring-offset-2">
+                                        Read Details
                                     </Link>
                                 </div>
                             </div>
@@ -130,7 +133,7 @@ export default function AllEbooks({ initialEbooks, }) {
                                 {pages.map((p) => (
                                     <Pagination.Item key={p} >
                                         <Link href={`/browse-ebook?page=${p}`} >
-                                            <Pagination.Link isActive={p === page} className={`${p===page && 'bg-blue-500 text-white'}`}>
+                                            <Pagination.Link isActive={p === page} className={`${p === page && 'bg-blue-500 text-white'}`}>
                                                 {p}
                                             </Pagination.Link>
                                         </Link>
@@ -140,8 +143,8 @@ export default function AllEbooks({ initialEbooks, }) {
                                     <Pagination.Next
                                         isDisabled={page === totalPages}>
                                         <Link className='flex items-center gap-1' href={`/browse-ebook?page=${page + 1}`}>
-                                           
-                                         
+
+
                                             Next
                                             <Pagination.NextIcon />
                                         </Link>
