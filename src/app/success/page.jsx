@@ -8,9 +8,8 @@ import { redirect } from 'next/navigation'
 
 export default async function Success({ searchParams }) {
   const { session_id } = await searchParams
-  //  const { data: session } = authClient.useSession();
-  //   const user = session?.user;
-   
+
+
   if (!session_id)
     throw new Error('Please provide a valid session_id (`cs_test_...`)')
 
@@ -27,16 +26,32 @@ export default async function Success({ searchParams }) {
   }
 
   if (status === 'complete') {
-// console.log(metadata);
+    // console.log("Metadata:", metadata);
 
-await subscription ({...metadata, sessionId: session_id})
+    await subscription({ ...metadata, sessionId: session_id })
 
+    // extra ai
+    await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/PurchasedNow`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: metadata.userId,
+        ebookId: metadata.ebookId,
+        ebookTitle: metadata.ebookTitle,   
+        description: metadata.description,  
+        image: metadata.image,
+        price: metadata.price,
+        sessionId: session_id,
+      }),
+    });
 
 
 
     return (
       <section id="success">
-       <SuccessPaymentPage></SuccessPaymentPage>
+        <SuccessPaymentPage></SuccessPaymentPage>
       </section>
     )
   }

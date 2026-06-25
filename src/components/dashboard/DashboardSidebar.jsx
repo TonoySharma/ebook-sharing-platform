@@ -26,11 +26,11 @@ export function DashboardSidebar() {
   ];
   const writerNavItems = [
     { icon: House, href: "/dashboard/writer", label: "dashboard" },
-    { icon: MdManageSearch, href: "/dashboard/manageEbooks", label: "Manage Ebooks" },
-    { icon: BiSolidBookAdd , href: "/dashboard/purchasedbooks", label: "Add Ebook" },
-    { icon: FaEdit, href: "/dashboard/profile", label: " Edit Ebook" },
-    { icon: BsBookmarkStarFill, href: "/dashboard/bookmark", label: "Bookmark" },
-    { icon: LuHistory, href: "/dashboard/bookmark", label: "Sales History" },
+    { icon: MdManageSearch, href: "/dashboard/writer/manageEbooks", label: "Manage Ebooks" },
+    { icon: BiSolidBookAdd , href: "/dashboard/writer/add-ebook", label: "Add Ebook" },
+    { icon: FaEdit, href: "/dashboard/writer/edite-ebook", label: " Edit Ebook" },
+    { icon: BsBookmarkStarFill, href: "/dashboard/writer/bookmark", label: "Bookmark" },
+    { icon: LuHistory, href: "/dashboard/writer/bookmark", label: "Sales History" },
   ];
   const adminNavItems = [
     { icon: House, href: "/dashboard/admin", label: "dashboard" },

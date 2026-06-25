@@ -18,6 +18,7 @@ import PurchaseButton from '@/components/PurcheseButton';
 const EbooksDetailsPage = async ({ params }) => {
 
     const { id } = await params;
+    console.log(id, 'details id');
     const book = await getEbooksById(id);
 
     // console.log(book, 'details ebooks');
@@ -172,8 +173,10 @@ const EbooksDetailsPage = async ({ params }) => {
                                     </Link>
                                 ) : (
 
-                                    <form >
-                                  
+                                    <form action={'/api/payment'} method='POST'>
+                                        <input type='hidden' name='price' value={book.price}/>
+                                        <input type='hidden' name='title' value={book.title}/>
+                                        <input type='hidden' name='ebookId' value={book._id}/>
                                         <PurchaseButton book={book}></PurchaseButton>
                                     </form>
                                 )}

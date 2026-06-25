@@ -3,3 +3,9 @@ export const fetchFeaturedEbook = async () =>{
     const data = await res.json();
     return data || [];
 } 
+// export const fetchMyPurchesed = async (email) =>{
+//     const result = await fetch (`/PurchasedNow/:email/${email}`)
+//    console.log(result, ' hello');
+   
+//     return result;
+// } 

@@ -6,52 +6,54 @@ import { auth } from '@/lib/auth';
 
 
 
-export async function POST(req) {
+export async function POST(reqest) {
   const data = await req.json();
 
   // console.log(data);
-
+  
   try {
     const headersList = await headers()
     const origin = headersList.get('origin')
 
     const userSession = await auth.api.getSession({
-      headers: await headers()
+        headers: await headers()
     })
     const user = userSession?.user
+    const formData = await reqest.formData();
+    const price = formData.get('price')
+    const title = formData.get('title')
+    const ebookId = formData.get('ebookId')
 
-
-    const PRICE_ID = "price_1Tl9VcR6vcdNysqfSlkusptJ"
 
     // Create Checkout Sessions from body params.
     const session = await stripe.checkout.sessions.create({
-      customer_email: user?.email,
+        customer_email:user?.email,
       line_items: [
         {
           // Provide the exact Price ID (for example, price_1234) of the product you want to sell
-          price: PRICE_ID,
+          price_data: {
+            currency: "USD",
+            unit_amount: Number(price) * 100,
+            ebook_data: {
+                name : title,
+            }
+          },
           quantity: 1,
         },
       ],
-      metadata: {
-        priceId: PRICE_ID,
+      metadata:{
+        priceId: Number(price),
         userId: user.id,
         userEmail: user.email,
-
-        ebookId: data.ebookId,
-        ebookTitle: data.title,
-        writer_name: data.writer_name,
-        description: data.description,
-        image: data.image,
-        price: data.price,
+        title,
+        ebookId,
       },
-      mode: 'subscription',
-      success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
+      mode: 'payment',
+      success_url: `${origin}/payment_success?session_id={CHECKOUT_SESSION_ID}`,
     });
     // console.log(session);
-
-
-    return NextResponse.json({ url: session.url, })
+    
+    return NextResponse.json({url:session.url,})
   } catch (err) {
     return NextResponse.json(
       { error: err.message },
@@ -63,8 +65,8 @@ export async function POST(req) {
 
 
 
-export async function GET() {
-  return NextResponse.json({
-    massage: "hello from subscription api route"
-  })
+export async function GET(){
+    return NextResponse.json({
+        massage: "hello from subscription api route"
+    })
 }

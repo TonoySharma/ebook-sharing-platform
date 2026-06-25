@@ -58,7 +58,7 @@ const SuccessPaymentPage = ({ customerEmail = "user@example.com" }) => {
    
         <div className="mt-6">
           <button 
-            onClick={() => window.location.href = '/browse-ebook'}
+            onClick={() => window.location.href = '/dashboard/purchaseEbook'}
             className="w-full py-3 px-4 inline-flex cursor-pointer justify-center items-center gap-x-2 text-sm font-semibold rounded border border-transparent bg-slate-900 text-white hover:bg-slate-800 transition-all duration-200 focus:outline-none shadow-md shadow-slate-900/10"
           >
             Go to Dashboard
