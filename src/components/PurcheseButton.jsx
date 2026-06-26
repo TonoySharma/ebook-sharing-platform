@@ -3,7 +3,7 @@
 import { authClient } from '@/lib/auth-client';
 import { Button } from '@heroui/react';
 import { useRouter } from 'next/navigation';
-
+import { useState } from 'react';
 
 
 export default function PurchaseButton({ book }) {
@@ -13,10 +13,15 @@ export default function PurchaseButton({ book }) {
     const router = useRouter();
     const user = session?.user;
 
+  
+    const [loading, setLoading] = useState(false);
+
     const handlePurchased = async () => {
 
-        // 1. User na thakle agei return korbe
         if (!user || !book) return;
+
+   
+        setLoading(true);
 
         const purchasedData = {
             userId: user?.id,
@@ -28,47 +33,38 @@ export default function PurchaseButton({ book }) {
             image: book?.cover_image
         };
 
-        // console.log(purchasedData);
+        try {
+            const res = await fetch('/api/subcription', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(purchasedData)
+            });
 
+            const data = await res.json();
 
-
-
-        const res = await fetch('/api/subcription', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(purchasedData)
-        });
+            if (data?.url) {
+                router.push(data?.url);
+            } else {
+             
+                setLoading(false);
+            }
+        } catch (error) {
+            console.error("Payment error:", error);
          
-        const data = await res.json();
-        router.push(data?.url)
-
-        // console.log(data,  'success data');
-
-
-        
-        // const result = await fetch('/PurchasedNow', {
-            
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(purchasedData)
-        // });
-    
-        //     console.log(result, 'hello');
-       
+            setLoading(false);
+        }
     };
-
-
 
     return (
         <Button
             onClick={handlePurchased}
-
-            className="w-full bg-indigo-600 text-white p-4 rounded cursor-pointer" >
-            Book Now
+            isLoading={loading} 
+            disabled={loading}  
+            className="w-full bg-indigo-600 text-white p-4 rounded cursor-pointer font-bold"
+        >
+            {loading ? 'Processing...' : 'Buy Now'} 
         </Button>
     );
 }

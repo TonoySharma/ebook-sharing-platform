@@ -1,4 +1,4 @@
-// "use client"
+"use client"
 import { useState, useEffect } from 'react';
 
 export default function BookmarkPage() {
@@ -7,10 +7,11 @@ export default function BookmarkPage() {
   
   useEffect(() => {
     const savedBookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setBookmarkedBooks(savedBookmarks);
   }, []);
 
-  // বুকমার্ক পেজ থেকেও ডিরেক্ট রিমুভ করার ফাংশন (অপশনাল কিন্তু দরকারি)
+
   const removeBookmark = (id) => {
     const savedBookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
     const updatedBookmarks = savedBookmarks.filter((book) => book.id !== id);
@@ -32,7 +33,7 @@ export default function BookmarkPage() {
               <h2 className="text-xl font-bold">{book.title}</h2>
               <p className="text-gray-600 text-sm mt-1">{book.author}</p>
               
-              {/* রিমুভ বাটন */}
+           
               <button 
                 onClick={() => removeBookmark(book.id)}
                 className="mt-4 w-full text-center py-2 bg-red-50 text-red-600 font-medium rounded-lg text-sm hover:bg-red-100 transition-colors"

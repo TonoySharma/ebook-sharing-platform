@@ -55,7 +55,7 @@ const ProfilePage = async () => {
                                 <h1 className="text-2xl font-semibold tracking-tight text-neutral-900">
                                     {user?.name || 'NO login'}
                                 </h1>
-                                <span className="rounded-full bg-neutral-900 px-2.5 py-0.5 text-[11px] font-medium text-white tracking-wide">
+                                <span className="rounded-full bg-pink-200 border px-2.5 py-0.5 text-[11px] font-medium text-black tracking-wide">
                                     PRO MEMBER
                                 </span>
                             </div>

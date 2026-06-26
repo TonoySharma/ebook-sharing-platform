@@ -26,7 +26,7 @@ export default async function Success({ searchParams }) {
   }
 
   if (status === 'complete') {
-    // console.log("Metadata:", metadata);
+    console.log("Metadata:", metadata);
 
     await subscription({ ...metadata, sessionId: session_id })
 
@@ -39,11 +39,14 @@ export default async function Success({ searchParams }) {
       body: JSON.stringify({
         userId: metadata.userId,
         ebookId: metadata.ebookId,
-        ebookTitle: metadata.ebookTitle,   
-        description: metadata.description,  
+        ebookTitle: metadata.ebookTitle,
+        description: metadata.description,
         image: metadata.image,
         price: metadata.price,
         sessionId: session_id,
+        purchasedAt: new Date(),
+        userEmail: customerEmail,
+        writer: metadata.writer,
       }),
     });
 

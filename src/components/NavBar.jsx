@@ -24,11 +24,11 @@ const NavBar = () => {
           {/* Left Side Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2.5 font-bold text-lg text-gray-900 no-underline transition-opacity hover:opacity-90"
+            className="flex items-center gap-2 font-bold text-lg text-gray-900 no-underline transition-opacity hover:opacity-90"
           >
             <div>
               <Image
-                src="/logos.png"
+                src="/logo.png"
                 alt="Ebook Hub Logo"
                 width={40}
                 height={40}

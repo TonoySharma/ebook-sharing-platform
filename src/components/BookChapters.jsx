@@ -1,4 +1,5 @@
 import React from 'react';
+import FadeUp from './FadeUp';
 
 export default function BookChapters() {
   // Static data for Ebook Chapters
@@ -34,7 +35,7 @@ export default function BookChapters() {
       {/* Premium subtle mesh grid background pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30"></div>
 
-      <div className="max-w-5xl mx-auto relative z-10">
+      <FadeUp className="max-w-5xl mx-auto relative z-10">
         
         {/* Section Heading Left Aligned for a change */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
@@ -103,7 +104,7 @@ export default function BookChapters() {
           <div className="flex items-center gap-2">🟢 EPUB + PDF Formats</div>
         </div>
 
-      </div>
+      </FadeUp >
     </section>
   );
 }

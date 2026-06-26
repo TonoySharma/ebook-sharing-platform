@@ -18,7 +18,7 @@ if(session?.user?.role == "reader" && session?.user?.plan === "free"){
 }
 
 if(!session || !session?.user){
-   return NextResponse.redirect(new URL('/login', request.url))
+   return NextResponse.redirect(new URL('/logIn', request.url))
 }
  return NextResponse .next()
 }
@@ -27,6 +27,6 @@ if(!session || !session?.user){
 // export default function proxy(request: NextRequest) { ... }
  
 export const config = {
-  matcher: ['/profile,'],
+  matcher: ['/ebooks/:id', '/profile'],
 }
 
