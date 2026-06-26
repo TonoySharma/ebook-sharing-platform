@@ -2,6 +2,7 @@ import { fetchFeaturedEbook } from '@/lib/ebook/data';
 import Link from 'next/link';
 import React from 'react';
 import FadeUp from './FadeUp';
+import { TbCurrencyTaka } from 'react-icons/tb';
 
 
 
@@ -88,19 +89,19 @@ const FeaturedEbooks = async ({ ebooks = [] }) => {
                                         </span>
                                     </div>
 
-                                    <div className="mt-3 flex items-center gap-2">
+                                    <div className="mt-3 flex items-center gap-2 border-t">
                                         {book.discount_price ? (
                                             <>
-                                                <span className="text-base font-bold text-blue-600">
-                                                    ৳{book.discount_price}
+                                                <span className="text-base font-bold text-blue-600 flex items-center gap-1 my-2">
+                                                   <TbCurrencyTaka />{book.discount_price}
                                                 </span>
-                                                <span className="text-xs text-gray-400 line-through">
-                                                    ৳{book.price}
+                                                <span className="text-xs text-gray-400 line-through flex items-center gap-1 my-2">
+                                                   <TbCurrencyTaka />{book.price}
                                                 </span>
                                             </>
                                         ) : (
-                                            <span className="text-base font-bold text-gray-900 dark:text-white">
-                                                ৳{book.price}
+                                            <span className="text-base font-bold text-gray-900 dark:text-white flex items-center gap-1 my-2">
+                                               <TbCurrencyTaka />{book.price}
                                             </span>
                                         )}
                                     </div>

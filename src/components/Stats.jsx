@@ -17,8 +17,8 @@ export default function StatsDashboard() {
     ];
 
     return (
-        <div className="min-h-screen p-4 sm:p-6 text-black font-sans antialiased">
-            <FadeUp className="max-w-6xl mx-auto space-y-8">
+        <div className="min-h-screen p-4 sm:p-6 text-black antialiased">
+            <FadeUp className="max-w-7xl mx-auto space-y-8">
 
                 {/* --- Stats Section --- */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">

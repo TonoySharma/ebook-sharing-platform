@@ -3,6 +3,7 @@ import { headers } from 'next/headers';
 import React from 'react';
 import Link from 'next/link';
 import FadeUp from '@/components/FadeUp';
+import { TbCurrencyTaka } from 'react-icons/tb';
 
 const PurcheseEbookPage = async () => {
 
@@ -21,15 +22,11 @@ const PurcheseEbookPage = async () => {
     }
 
     const res = await fetch(
-        `http://localhost:8000/PurchasedNow/${user.id}`,
-        {
-            cache: "no-store"
-        }
-    );
+        `http://localhost:8000/PurchasedNow/${user.id}`);
 
     const Purchased = await res.json();
-
-    console.log("Purchased:", Purchased);
+   
+    // console.log("Purchased:", Purchased);
 
     const totalBooks = Purchased?.length || 0;
 
@@ -102,14 +99,14 @@ const PurcheseEbookPage = async () => {
                                 </p>
 
                                 {/* PRICE */}
-                                <p className="mt-2 text-sm font-semibold text-gray-800">
-                                    ৳ {ebook.price}
+                                <p className="mt-2 text-sm font-semibold text-gray-800 flex items-center gap-1">
+                                    <TbCurrencyTaka />{ebook.price}
                                 </p>
 
                                 {/* BUTTON */}
                                 <div className="mt-5">
                                     <Link
-                                           href={`/ebooks/${ebook._id}`}
+                                        href={`/ebooks/${ebook._id}`}
                                         className="inline-flex w-full items-center justify-center rounded bg-gray-900 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
                                     >
                                         Read Details

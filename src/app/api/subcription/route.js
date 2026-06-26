@@ -38,7 +38,7 @@ export async function POST(req) {
         userId: user.id,
         userEmail: user.email,
 
-        ebookId: data.ebookId,
+        ebookId: data.ebookId || data._id,
         ebookTitle: data.title,
         writer_name: data.writer_name,
         description: data.description,

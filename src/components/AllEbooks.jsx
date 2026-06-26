@@ -5,6 +5,7 @@ import Link from 'next/link';
 import EbookFilter from '@/components/EbooksFilter';
 import FadeUp from './FadeUp';
 import { Pagination, Table } from '@heroui/react';
+import { TbCurrencyTaka } from 'react-icons/tb';
 
 export default function AllEbooks({ initialEbooks, }) {
     // console.log(initialEbooks)
@@ -85,16 +86,16 @@ export default function AllEbooks({ initialEbooks, }) {
                                     <div className="flex items-center gap-2 pt-2 border-t">
                                         {book.discount_price ? (
                                             <>
-                                                <span className="text-lg font-bold text-indigo-600">
-                                                    ৳{book.discount_price}
+                                                <span className="text-lg font-bold text-indigo-600 flex items-center gap-1 my-2">
+                                                    <TbCurrencyTaka />{book.discount_price}
                                                 </span>
-                                                <span className="text-xs text-gray-400 line-through">
-                                                    ৳{book.price}
+                                                <span className="text-xs text-gray-400 line-through flex items-center gap-1 my-2">
+                                                    <TbCurrencyTaka />{book.price}
                                                 </span>
                                             </>
                                         ) : (
-                                            <span className="text-lg font-bold text-gray-900">
-                                                ৳{book.price}
+                                            <span className="text-lg font-bold text-gray-900 flex items-center gap-1 my-2">
+                                                <TbCurrencyTaka />{book.price}
                                             </span>
                                         )}
                                     </div>

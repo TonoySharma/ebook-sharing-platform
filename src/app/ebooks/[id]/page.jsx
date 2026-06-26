@@ -13,12 +13,14 @@ import {
     FaCalendarAlt
 } from 'react-icons/fa';
 import PurchaseButton from '@/components/PurcheseButton';
+import FadeUp from '@/components/FadeUp';
+import { TbCurrencyTaka } from 'react-icons/tb';
 
 
 const EbooksDetailsPage = async ({ params }) => {
 
     const { id } = await params;
-    console.log(id, 'details id');
+    // console.log(id, 'details id');
     const book = await getEbooksById(id);
 
     // console.log(book, 'details ebooks');
@@ -46,7 +48,7 @@ const EbooksDetailsPage = async ({ params }) => {
 
     return (
         <div className="min-h-screen bg-gray-50/50 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+            <FadeUp className="max-w-6xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 md:p-10">
 
@@ -140,11 +142,14 @@ const EbooksDetailsPage = async ({ params }) => {
                             <div className="flex items-baseline gap-3">
                                 {book.discount_price ? (
                                     <>
-                                        <span className="text-3xl md:text-4xl font-black text-indigo-600">৳{book.discount_price}</span>
-                                        <span className="text-sm md:text-base text-gray-400 line-through">৳{book.price}</span>
+                                        <span className="text-3xl md:text-4xl font-black text-indigo-600 flex items-center gap-1 my-2">
+                                             <TbCurrencyTaka />{book.discount_price}</span>
+                                        <span className="text-sm md:text-base text-gray-400 line-through flex items-center gap-1 my-2">
+                                             <TbCurrencyTaka />{book.price}</span>
                                     </>
                                 ) : (
-                                    <span className="text-3xl md:text-4xl font-black text-gray-900">৳{book.price}</span>
+                                    <span className="text-3xl md:text-4xl font-black text-gray-900 flex items-center gap-1 my-2">
+                                         <TbCurrencyTaka />{book.price}</span>
                                 )}
                             </div>
 
@@ -199,7 +204,7 @@ const EbooksDetailsPage = async ({ params }) => {
                     </div>
                 )}
 
-            </div>
+            </FadeUp>
         </div>
     );
 };
