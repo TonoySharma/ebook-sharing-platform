@@ -1,4 +1,5 @@
 import Banner from "@/components/Banner";
+import BookChapters from "@/components/BookChapters";
 import BookFeatures from "@/components/BookFeatures";
 import EbookGenres from "@/components/EbookGenres";
 import LatestEbooks from "@/components/LatestEbooks";
@@ -15,6 +16,7 @@ export default function Home() {
       <TopWriters></TopWriters>
       <EbookGenres></EbookGenres>
       <BookFeatures></BookFeatures>
+      <BookChapters></BookChapters>
     </div>
   );
 }
