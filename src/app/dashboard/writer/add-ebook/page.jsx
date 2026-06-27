@@ -27,7 +27,7 @@ const GENRES = [
 
 export default function AddEbookForm() {
   const router = useRouter();
-  const { data: session, isPending } = useSession();
+  const { data: session, } = useSession();
 // console.log(session);
 
   const [formData, setFormData] = useState({
@@ -103,15 +103,13 @@ export default function AddEbookForm() {
         price: Number(formData.price),
         genre: formData.genre,
         coverImage: data.data.url,
-
         userId: session.user.id,
         userEmail: session.user.email,
-
         status: "unpublished",
         createdAt: new Date(),
       };
 
-      console.log(ebookData, 'Successfully');
+      // console.log(ebookData, 'Successfully');
 
       const payload = await addedbook(ebookData);
 
@@ -133,7 +131,7 @@ export default function AddEbookForm() {
         toast.error("Failed to add ebook.");
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.error(err.message);
     } finally {
       setLoading(false);

@@ -19,8 +19,8 @@ export default async function ManageEbooksPage() {
 
   const ebooks = (await getAddedBooks(session.user.email)) || [];
 
-  console.log( ebooks);
+  // console.log( ebooks);
   
 
-  return <ManageBooksTable ebooks={ebooks} />;
+  return <ManageBooksTable ebooks={ebooks} />
 }

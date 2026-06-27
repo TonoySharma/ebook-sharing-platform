@@ -1,13 +1,33 @@
 "use client";
 
 import { Button, Switch, Table } from "@heroui/react";
-import { FaEdit, FaTrash, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+import { FaEdit, FaTrash, } from "react-icons/fa";
 import { MdBook, MdLibraryAddCheck, MdOutlineUnpublished } from "react-icons/md";
 import FadeUp from "./FadeUp";
+import toast from "react-hot-toast";
+import { EditeModal } from "./EditeModal";
 
-export default function ManageBooksTable({ebooks}) { // Empty array fallback সহ
+export default function ManageBooksTable({ ebooks }) {
 
-  
+  const handleDelete = async (id) => {
+    const res = await fetch(`http://localhost:8000/api/addedbook/${id}`, {
+      method: "DELETE",
+    });
+
+    const data = await res.json();
+
+    if (data.deletedCount > 0) {
+      toast.success(" Deleted successfully",{
+        duration: 5000
+      });
+
+      // UI update (option 1: reload)
+      window.location.reload();
+
+    }
+  };
+
+
   const totalBooks = ebooks?.length || 0;
   const publishedBooks = ebooks?.filter((b) => b.status?.toLowerCase() === "published").length || 0;
   const draftBooks = ebooks?.filter((b) => b.status?.toLowerCase() !== "published").length || 0;
@@ -88,7 +108,8 @@ export default function ManageBooksTable({ebooks}) { // Empty array fallback স
                   const isPublished = ebook.status?.trim()?.toLowerCase() === "published";
 
                   return (
-                    <Table.Row key={ebook._id} className="border-b border-zinc-100 dark:border-zinc-800 last:border-0 hover:bg-zinc-50/50 dark:hover:bg-zinc-800/30 transition-colors">
+                    <Table.Row key={ebook._id} className="border-b border-zinc-100 dark:border-zinc-800
+                    last:border-0 hover:bg-zinc-50/50 dark:hover:bg-zinc-800/30 transition-colors">
                       {/* Title Column */}
                       <Table.Cell className="py-4 font-medium text-zinc-800 dark:text-zinc-200">
                         {ebook.title}
@@ -136,15 +157,17 @@ export default function ManageBooksTable({ebooks}) { // Empty array fallback স
                           </div>
 
                           {/* Edit Button */}
-                          <Button
+                          <EditeModal book={ebook}></EditeModal>
+                          {/* <Button
                             title="Edit Ebook"
                             className="p-1.5 bg-white py-1 px-3 rounded-full border text-blue-600 hover:bg-blue-100 dark:text-blue-400 dark:hover:bg-blue-950/30 transition-colors"
                           >
                             <FaEdit size={25} />
-                          </Button>
+                          </Button> */}
 
                           {/* Delete Button */}
                           <Button
+                            onClick={() => handleDelete(ebook._id)}
                             title="Delete Ebook"
                             className=" text-rose-600 bg-white 
                             py-1 px-3 rounded-full border hover:bg-rose-100 dark:text-rose-400 dark:hover:bg-rose-950/30 transition-colors"

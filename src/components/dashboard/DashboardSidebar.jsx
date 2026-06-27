@@ -35,9 +35,9 @@ export function DashboardSidebar() {
 
   const adminNavItems = [
     { icon: House, href: "/dashboard/admin", label: "dashboard" },
-    { icon: MdManageAccounts, href: "/dashboard/purschese", label: "Manage Users" },
-    { icon: MdOutlineManageHistory, href: "/dashboard/purchasedbooks", label: "Manage All Ebooks" },
-    { icon: MdOutlineGridView, href: "/dashboard/profile", label: " View All Transactions" },
+    { icon: MdManageAccounts, href: "/dashboard/admin/manage-users", label: "Manage Users" },
+    { icon: MdOutlineManageHistory, href: "/dashboard/admin/manage-all-ebooks", label: "Manage All Ebooks" },
+    { icon: MdOutlineGridView, href: "/dashboard/admin/all-transactions", label: " View All Transactions" },
 
   ];
 

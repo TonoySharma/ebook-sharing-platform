@@ -28,7 +28,7 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-slate-800 text-slate-100">
       
       {/* 1. Top Modern Navbar */}
-      <FadeUp className="border-b border-slate-800 bg-slate-950/50 backdrop-blur-md sticky top-0 z-50 px-4 py-3 md:px-8 flex justify-between items-center">
+      <FadeUp className="border-b border-slate-800 bg-slate-950/50 backdrop-blur-md  px-4 py-3 md:px-8 flex justify-between items-center">
         {/* Search Bar */}
         <div className="relative w-64 md:w-80 hidden sm:block">
           <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm" />
