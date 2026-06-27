@@ -24,14 +24,15 @@ export function DashboardSidebar() {
     { icon: CgProfile, href: "/dashboard/profile", label: " Profile" },
     { icon: BsBookmarkStarFill, href: "/dashboard/bookmark", label: "Bookmark" },
   ];
+  
   const writerNavItems = [
     { icon: House, href: "/dashboard/writer", label: "dashboard" },
-    { icon: MdManageSearch, href: "/dashboard/writer/manageEbooks", label: "Manage Ebooks" },
+    { icon: MdManageSearch, href: "/dashboard/writer/manage-ebooks", label: "Manage Ebooks" },
     { icon: BiSolidBookAdd , href: "/dashboard/writer/add-ebook", label: "Add Ebook" },
-    { icon: FaEdit, href: "/dashboard/writer/edite-ebook", label: " Edit Ebook" },
     { icon: BsBookmarkStarFill, href: "/dashboard/writer/bookmark", label: "Bookmark" },
-    { icon: LuHistory, href: "/dashboard/writer/bookmark", label: "Sales History" },
+    { icon: LuHistory, href: "/dashboard/writer/sales-history", label: "Sales History" },
   ];
+
   const adminNavItems = [
     { icon: House, href: "/dashboard/admin", label: "dashboard" },
     { icon: MdManageAccounts, href: "/dashboard/purschese", label: "Manage Users" },
