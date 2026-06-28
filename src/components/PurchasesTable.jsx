@@ -2,6 +2,7 @@
 
 import { Table } from "@heroui/react";
 import { FaBookOpen, FaUser, FaCheckCircle, FaCalendarAlt } from "react-icons/fa";
+import { FaBangladeshiTakaSign } from "react-icons/fa6";
 
 const PurchaseTable = ({ purchases }) => {
   return (
@@ -49,8 +50,8 @@ const PurchaseTable = ({ purchases }) => {
                 </Table.Cell>
 
                 {/* Price */}
-                <Table.Cell className="font-bold text-gray-900 py-4">
-                  ৳ {book.price}
+                <Table.Cell className="font-bold text-gray-900 py-4 ">
+                <p className="flex items-center gap-1"> <FaBangladeshiTakaSign /> {book.price}</p>
                 </Table.Cell>
 
                 {/* Purchase Date */}

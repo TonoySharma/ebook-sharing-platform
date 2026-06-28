@@ -21,8 +21,7 @@ const PurcheseEbookPage = async () => {
         );
     }
 
-    const res = await fetch(
-        `http://localhost:8000/PurchasedNow/${user.id}`);
+    const res = await fetch(`http://localhost:8000/PurchasedNow/${user.id}`);
 
     const Purchased = await res.json();
    
@@ -47,7 +46,8 @@ const PurcheseEbookPage = async () => {
 
                 {totalBooks > 0 && (
                     <div className="mt-4 sm:mt-0">
-                        <span className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+                        <span className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1.5 text-sm
+                         font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
                             Total: {totalBooks} {totalBooks === 1 ? 'Book' : 'Books'}
                         </span>
                     </div>
@@ -59,7 +59,7 @@ const PurcheseEbookPage = async () => {
                 <div className="text-center py-24 border-2 border-dashed border-gray-200 rounded-2xl bg-gray-50">
                     <div className="text-gray-400 mb-3 text-4xl">📚</div>
                     <h3 className="text-lg font-semibold text-gray-900">
-                        No Books Found
+                        No Books Found 
                     </h3>
                     <p className="text-gray-500 mt-1 text-sm">
                         You haven&apos;t purchased any ebooks yet.
@@ -73,7 +73,8 @@ const PurcheseEbookPage = async () => {
                     {Purchased.map((ebook) => (
                         <div
                             key={ebook._id}
-                            className="group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                            className="group flex flex-col overflow-hidden rounded-2xl border border-gray-100
+                             bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
                         >
 
                             {/* IMAGE */}
@@ -81,33 +82,36 @@ const PurcheseEbookPage = async () => {
                                 <img
                                     src={ebook.image}
                                     alt={ebook.ebookTitle}
-                                    className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                                    className="h-full w-full object-cover object-center transition-transform
+                                     duration-300 group-hover:scale-105"
                                 />
                             </div>
 
                             {/* CONTENT */}
                             <div className="flex flex-1 flex-col p-5">
 
-                                {/* TITLE FIXED */}
-                                <h3 className="text-lg font-semibold text-gray-900 line-clamp-1 group-hover:text-blue-600 transition-colors">
+                               
+                                <h3 className="text-lg font-semibold text-gray-900 line-clamp-1
+                                 group-hover:text-blue-600 transition-colors">
                                     {ebook.ebookTitle}
                                 </h3>
 
-                                {/* DESCRIPTION */}
+                             
                                 <p className="mt-1 text-sm text-gray-600 line-clamp-2 flex-1">
                                     {ebook.description}
                                 </p>
 
-                                {/* PRICE */}
+                          
                                 <p className="mt-2 text-sm font-semibold text-gray-800 flex items-center gap-1">
                                     <TbCurrencyTaka />{ebook.price}
                                 </p>
 
-                                {/* BUTTON */}
+                                {/*  Read Details*/}
                                 <div className="mt-5">
                                     <Link
                                         href={`/ebooks/${ebook._id}`}
-                                        className="inline-flex w-full items-center justify-center rounded bg-gray-900 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+                                        className="inline-flex w-full items-center justify-center
+                                         rounded bg-gray-900 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
                                     >
                                         Read Details
                                     </Link>

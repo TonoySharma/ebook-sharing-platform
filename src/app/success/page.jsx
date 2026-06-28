@@ -46,7 +46,7 @@ export default async function Success({ searchParams }) {
         sessionId: session_id,
         purchasedAt: new Date(),
         userEmail: customerEmail,
-        writer: metadata.writer,
+        writer: metadata.writer_name,
       }),
     });
 

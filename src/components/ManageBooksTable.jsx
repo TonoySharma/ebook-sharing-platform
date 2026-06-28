@@ -158,14 +158,7 @@ export default function ManageBooksTable({ ebooks }) {
 
                           {/* Edit Button */}
                           <EditeModal book={ebook}></EditeModal>
-                          {/* <Button
-                            title="Edit Ebook"
-                            className="p-1.5 bg-white py-1 px-3 rounded-full border text-blue-600 hover:bg-blue-100 dark:text-blue-400 dark:hover:bg-blue-950/30 transition-colors"
-                          >
-                            <FaEdit size={25} />
-                          </Button> */}
-
-                          {/* Delete Button */}
+            
                           <Button
                             onClick={() => handleDelete(ebook._id)}
                             title="Delete Ebook"
