@@ -1,6 +1,6 @@
 "use server"
 
-const baseURl = process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:8000"
+const baseURl = process.env.NEXT_PUBLIC_SERVER_URL;
 
 export const subscription = async (data) =>{
     const res = await fetch(`${baseURl}/subscription`, {

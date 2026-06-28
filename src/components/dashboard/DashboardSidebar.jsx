@@ -11,7 +11,7 @@ import { House } from "@gravity-ui/icons";
 import { useSession } from "@/lib/auth-client";
 import { BiSolidBookAdd } from "react-icons/bi";
 import { MdManageAccounts, MdManageSearch, MdOutlineGridView, MdOutlineManageHistory } from "react-icons/md";
-import { FaEdit } from "react-icons/fa";
+// import { FaEdit } from "react-icons/fa";
 
 export function DashboardSidebar() {
   const { data: session } = useSession();
@@ -29,7 +29,7 @@ export function DashboardSidebar() {
     { icon: House, href: "/dashboard/writer", label: "dashboard" },
     { icon: MdManageSearch, href: "/dashboard/writer/manage-ebooks", label: "Manage Ebooks" },
     { icon: BiSolidBookAdd , href: "/dashboard/writer/add-ebook", label: "Add Ebook" },
-    { icon: BsBookmarkStarFill, href: "/dashboard/writer/bookmark", label: "Bookmark" },
+    // { icon: BsBookmarkStarFill, href: "/dashboard/writer/bookmark", label: "Bookmark" },
     { icon: LuHistory, href: "/dashboard/writer/sales-history", label: "Sales History" },
   ];
 

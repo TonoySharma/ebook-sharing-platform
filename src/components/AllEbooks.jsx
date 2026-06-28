@@ -7,12 +7,40 @@ import FadeUp from './FadeUp';
 import { Pagination, Table } from '@heroui/react';
 import { TbCurrencyTaka } from 'react-icons/tb';
 
-export default function AllEbooks({ initialEbooks, }) {
+export default function AllEbooks({ initialEbooks, searchParams }) {
     // console.log(initialEbooks)
-
-    // console.log(books, 'books')
-
+    // const search = searchParams?.search || "";
+    // const genre = searchParams?.genre || "All";
+    // const price = searchParams?.price || "all";
     const initialEbooksData = initialEbooks.data;
+
+//    let filteredBooks = initialEbooksData;
+
+    // if (search) {
+    //     filteredBooks = filteredBooks.filter((book) =>
+    //         book.title.toLowerCase().includes(search.toLowerCase())
+    //     );
+    // }
+
+    // if (genre !== "All") {
+    //     filteredBooks = filteredBooks.filter(
+    //         (book) => book.genre === genre
+    //     );
+    // }
+
+    // if (price === "0-200") {
+    //     filteredBooks = filteredBooks.filter((book) => book.price <= 200);
+    // }
+
+    // if (price === "200-400") {
+    //     filteredBooks = filteredBooks.filter(
+    //         (book) => book.price > 200 && book.price <= 400
+    //     );
+    // }
+
+    // if (price === "400-above") {
+    //     filteredBooks = filteredBooks.filter((book) => book.price > 400);
+    // }
 
     // console.log(initialEbooks);
     const page = initialEbooks.page;
@@ -21,10 +49,8 @@ export default function AllEbooks({ initialEbooks, }) {
     for (let i = 1; i <= totalPages; i++) {
         pages.push(i)
     }
-    // console.log(pages);
 
-    // const [displayedEbooks, setDisplayedEbooks] = useState(initialEbooks);
-    //  ebooks={initialEbooks} onFilterChange={setDisplayedEbooks}
+
 
 
 

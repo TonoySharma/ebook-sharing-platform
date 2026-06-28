@@ -11,26 +11,31 @@ import {
   Button
 } from "@heroui/react";
 import FadeUp from './FadeUp';
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 
-const GENRES = ["All", "Fantasy", "Mystery", "Sci-Fi", "Drama", "Thriller"];
-const PRICE_RANGES = [
-  { label: "All Prices", value: "all" },
-  { label: "Under 200 ৳", value: "0-200" },
-  { label: "200 ৳ - 400 ৳", value: "200-400" },
-  { label: "Over 400 ৳", value: "400-above" }
-];
 
 export default function EbookFilter() {
+  const router = useRouter();
   const [search, setSearch] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("All");
   const [selectedPriceRange, setSelectedPriceRange] = useState("all");
+
+  const GENRES = ["All", "Fantasy", "Mystery", "Sci-Fi", "Drama", "Thriller"];
+  const PRICE_RANGES = [
+    { label: "All Prices", value: "all" },
+    { label: "Under 200 ৳", value: "0-200" },
+    { label: "200 ৳ - 400 ৳", value: "200-400" },
+    { label: "Over 400 ৳", value: "400-above" }
+  ];
+
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     // console.log(e.target.search.value);
-    redirect(`/browse-ebook?search=${e.target.search.value}`);
+    router.push(
+      `/browse-ebook?search=${search}&genre=${selectedGenre}&price=${selectedPriceRange}`
+    );
 
   }
 
@@ -76,11 +81,17 @@ export default function EbookFilter() {
               <ListBox>
                 <ListBox.Section>
                   <Header>Select Genre</Header>
+
                   {GENRES.map((genre) => (
-                    <ListBox.Item key={genre} id={genre}>
+                    <ListBox.Item
+                      key={genre}
+                      id={genre}
+                      textValue={genre}
+                    >
                       <Label>{genre}</Label>
                     </ListBox.Item>
                   ))}
+
                 </ListBox.Section>
               </ListBox>
             </Select.Popover>
@@ -101,11 +112,17 @@ export default function EbookFilter() {
               <ListBox>
                 <ListBox.Section>
                   <Header>Select Budget</Header>
+
                   {PRICE_RANGES.map((range) => (
-                    <ListBox.Item key={range.value} id={range.value}>
+                    <ListBox.Item
+                      key={range.value}
+                      id={range.value}
+                      textValue={range.label}
+                    >
                       <Label>{range.label}</Label>
                     </ListBox.Item>
                   ))}
+
                 </ListBox.Section>
               </ListBox>
             </Select.Popover>

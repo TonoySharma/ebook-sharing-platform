@@ -1,7 +1,7 @@
 "use client";
 
 import FadeUp from "@/components/FadeUp";
-import { addedbook } from "@/lib/action/addedbook ";
+import { addedbook } from "@/lib/action/addedbook";
 import { useSession } from "@/lib/auth-client";
 import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";

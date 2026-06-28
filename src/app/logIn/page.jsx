@@ -33,6 +33,8 @@ const LoginPage = () => {
       callbackURL: "/",
     });
 
+
+    
     if (error) {
       toast.error(error.message)
     }

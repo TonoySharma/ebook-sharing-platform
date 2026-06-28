@@ -17,9 +17,6 @@ const EbooksPage = async ({ searchParams }) => {
         displayEbooks = await getEbooks(pageQuery);
     }
 
-    // (Optional) Localhost theke fetch kora data jodi lagbe bole mone hoy, tahole thakbe, natha bad dite paren
-    // const res = await fetch('http://localhost:8000/api/ebooks', { cache: 'no-store' });
-    // const ebooks = await res.json();
 
     return (
         <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -34,7 +31,7 @@ const EbooksPage = async ({ searchParams }) => {
                     </p>
                 </div>
 
-                {/* 3. Ekhane dynamic content-ti pass kore din */}
+               
                 <AllEbooks initialEbooks={displayEbooks || []} />
             </div>
         </div>

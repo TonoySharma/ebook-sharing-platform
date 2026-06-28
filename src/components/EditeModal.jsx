@@ -25,11 +25,15 @@ export function EditeModal({ book, onUpdate }) {
             body: JSON.stringify(form),
 
         });
+        
         window.location.reload();
+
         const data = await res.json();
 
         if (data.modifiedCount > 0) {
-            toast.success(" updated successfully");
+            toast.success(" updated successfully",{
+                 duration: 5000,
+            });
             onUpdate?.(); // refresh table
         }
     };
@@ -45,41 +49,61 @@ export function EditeModal({ book, onUpdate }) {
 
             <Modal.Backdrop>
                 <Modal.Container>
-                    <Modal.Dialog className="sm:max-w-[420px]">
+                    <Modal.Dialog className="sm:max-w-[420px] bg-white dark:bg-zinc-900 rounded-2xl shadow-xl overflow-hidden">
 
                         <Modal.CloseTrigger />
 
-                        <Modal.Header>
-                            <Modal.Heading>Edit Ebook</Modal.Heading>
+                        <Modal.Header className="border-b border-gray-100 dark:border-zinc-800 pb-3">
+                            <Modal.Heading className="text-xl font-bold text-gray-800 dark:text-zinc-100">
+                                Edit Ebook
+                            </Modal.Heading>
                         </Modal.Header>
 
-                        <Modal.Body className="space-y-4">
+                        {/* space-y-5 দিয়ে ইনপুটগুলোর গ্যাপ এবং প্যাডিং বাড়ানো হয়েছে */}
+                        <Modal.Body className="space-y-5 py-5">
 
-                            {/* Title */}
-                            <Input
-                                label="Title"
-                                value={form.title}
-                                onChange={(e) => handleChange("title", e.target.value)}
-                            />
+                            {/* Title Input */}
+                            <div className="flex flex-col gap-1.5">
+                                <label className="text-sm font-semibold text-gray-700 dark:text-zinc-300">
+                                    Book Title
+                                </label>
+                                <Input
+                                    className="w-full h-11 px-3 rounded-xl border border-gray-300 bg-gray-5/50 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:focus:border-blue-500 transition-all outline-none"
+                                    placeholder="Enter book title"
+                                    value={form.title}
+                                    onChange={(e) => handleChange("title", e.target.value)}
+                                />
+                            </div>
 
-                            {/* Price */}
-                            <Input
-                                label="Price"
-                                type="number"
-                                value={form.price}
-                                onChange={(e) => handleChange("price", e.target.value)}
-                            />
-
-                  
+                            {/* Price Input */}
+                            <div className="flex flex-col gap-1.5">
+                                <label className="text-sm font-semibold text-gray-700 dark:text-zinc-300">
+                                    Price ($)
+                                </label>
+                                <Input
+                                    className="w-full h-11 px-3 rounded-xl border border-gray-300 bg-gray-5/50 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:focus:border-blue-500 transition-all outline-none"
+                                    type="number"
+                                    placeholder="0.00"
+                                    value={form.price}
+                                    onChange={(e) => handleChange("price", e.target.value)}
+                                />
+                            </div>
 
                         </Modal.Body>
 
-                        <Modal.Footer>
-                            <Button variant="secondary" slot="close">
+                        <Modal.Footer className="border-t border-gray-100 dark:border-zinc-800 pt-3 flex gap-3">
+                            <Button
+                                variant="secondary"
+                                slot="close"
+                                className="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium dark:bg-zinc-800 dark:text-zinc-300 transition-colors"
+                            >
                                 Cancel
                             </Button>
 
-                            <Button className="w-full" onClick={handleSubmit}>
+                            <Button
+                                className="flex-1 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors shadow-sm shadow-blue-500/20"
+                                onClick={handleSubmit}
+                            >
                                 Update
                             </Button>
                         </Modal.Footer>
